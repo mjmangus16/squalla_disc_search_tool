@@ -7,7 +7,7 @@ const styles = theme => ({
     height: "calc(100% - 64px)",
     marginTop: 64,
     [theme.breakpoints.up("md")]: {
-      width: 250
+      width: 300
     },
     [theme.breakpoints.down("sm")]: {
       width: 200

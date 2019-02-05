@@ -15,7 +15,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.down("md")]: {
       marginRight: 250
     },
     [theme.breakpoints.down("sm")]: {
