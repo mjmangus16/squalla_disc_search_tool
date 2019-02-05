@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
+const path = require("path");
+
 const users = require("./routes/api/users");
 const discs = require("./routes/api/discs");
 const values = require("./routes/api/values");
@@ -19,7 +21,8 @@ const db = require("./config/keys").monguURI;
 // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB Connected"));
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
