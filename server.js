@@ -18,10 +18,7 @@ const db = require("./config/keys").monguURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected"));
 
 // Passport middleware
@@ -34,6 +31,16 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/discs", discs);
 app.use("/api/values", values);
+
+// Server static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const port = process.env.PORT || 5000;
 
