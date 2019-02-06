@@ -34,7 +34,7 @@ class App extends Component {
   state = {
     discs: [],
     add_disc_open: false,
-    filter_open: false,
+    filter_open: true,
     toggleRatings: false,
     manufactureSelections: [],
     discTypeSelections: [],

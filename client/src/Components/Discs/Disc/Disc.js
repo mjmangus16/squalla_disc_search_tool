@@ -6,7 +6,8 @@ import {
   CardHeader,
   Typography,
   withStyles,
-  Button
+  Button,
+  Tooltip
 } from "@material-ui/core";
 import { orange } from "@material-ui/core/colors";
 
@@ -40,8 +41,9 @@ const styles = {
   },
   header: {
     paddingTop: 5,
-    paddingBottom: 5
+    paddingBottom: 0
   },
+
   title: {
     fontSize: "1em"
   },
@@ -87,7 +89,7 @@ export default withStyles(styles)(({ classes, data, status }) => {
   if (status) {
     if (data.manufactureRatings && data.manufactureRatings.speed !== 0) {
       ratingsContent = (
-        <div className={classes.ratingsContainer} title={data.stability}>
+        <div className={classes.ratingsContainer}>
           <Typography
             variant="h6"
             align="center"
@@ -133,7 +135,7 @@ export default withStyles(styles)(({ classes, data, status }) => {
       );
     } else {
       ratingsContent = (
-        <div className={classes.ratingsContainer} title={data.stability}>
+        <div className={classes.ratingsContainer}>
           <Typography
             variant="h6"
             align="center"
@@ -147,7 +149,7 @@ export default withStyles(styles)(({ classes, data, status }) => {
     }
   } else {
     ratingsContent = (
-      <div className={classes.ratingsContainer} title={data.stability}>
+      <div className={classes.ratingsContainer}>
         <Typography
           variant="h6"
           align="center"
@@ -200,7 +202,13 @@ export default withStyles(styles)(({ classes, data, status }) => {
           className={classes.header}
           classes={{ title: classes.title, subheader: classes.subHeader }}
         />
-        {ratingsContent}
+        <Tooltip
+          disableFocusListener
+          placement="bottom-end"
+          title={data.stability}
+        >
+          {ratingsContent}
+        </Tooltip>
         <Button
           size="small"
           href={data.link}
