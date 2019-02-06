@@ -19,7 +19,7 @@ const Header = ({ classes, filterToggle }) => {
     <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="headline" color="inherit" className={classes.flex}>
-          Disc Golf Disc Search Tool
+          Squalla Disc Search Tool
         </Typography>
         <Add />
         <Filter filterToggle={filterToggle} />
