@@ -12,7 +12,12 @@ import {
 const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
-    width: "100%"
+    [theme.breakpoints.up("sm")]: {
+      width: "100%"
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    }
   }
 });
 

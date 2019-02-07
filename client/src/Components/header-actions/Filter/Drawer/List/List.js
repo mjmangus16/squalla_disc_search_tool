@@ -15,13 +15,11 @@ import SelectInputText from "./Select/SelectInputText";
 import SelectInputNumber from "./Select/SelectInputNumber";
 
 const styles = theme => ({
-  input: {
-    margin: theme.spacing.unit
-  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: "100%"
+    
   },
   button: {
     margin: "auto",
@@ -29,12 +27,14 @@ const styles = theme => ({
       width: 75
     },
     [theme.breakpoints.down("sm")]: {
-      width: 50,
+      width: 40,
       fontSize: ".75em"
     }
   },
   gridList: {
-    flexWrap: "nowrap"
+    flexWrap: "nowrap",
+    width: "auto",
+    margin: "auto", paddingLeft: 16, paddingRight: 16
   }
 });
 
@@ -146,8 +146,13 @@ class ListComponent extends Component {
               data="Stability"
             />
           </ListItem>
-          <GridList cellHeight={86} spacing={0} className={classes.gridList}>
-            <ListItem>
+          <GridList
+            cellHeight={86}
+            spacing={0}
+            className={classes.gridList}
+            
+          >
+            <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.speed}
                 handleChange={handlers.speed}
@@ -155,7 +160,7 @@ class ListComponent extends Component {
                 data="Speed"
               />
             </ListItem>
-            <ListItem>
+            <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.glide}
                 handleChange={handlers.glide}
@@ -164,8 +169,13 @@ class ListComponent extends Component {
               />
             </ListItem>
           </GridList>
-          <GridList cellHeight={86} spacing={0} className={classes.gridList}>
-            <ListItem>
+          <GridList
+            cellHeight={86}
+            spacing={0}
+            className={classes.gridList}
+            
+          >
+            <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.turn}
                 handleChange={handlers.turn}
@@ -173,7 +183,7 @@ class ListComponent extends Component {
                 data="Turn"
               />
             </ListItem>
-            <ListItem>
+            <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.fade}
                 handleChange={handlers.fade}
@@ -182,7 +192,7 @@ class ListComponent extends Component {
               />
             </ListItem>
           </GridList>
-          <ListItem style={{ width: "90%", margin: "auto" }}>
+          <ListItem style={{ width: "100%", margin: "auto" }}>
             <Button
               variant="contained"
               className={classes.button}

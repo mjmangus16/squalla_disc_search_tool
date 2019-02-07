@@ -11,8 +11,13 @@ import {
 
 const styles = theme => ({
   formControl: {
-    margin: "auto",
-    width: 75
+    margin: theme.spacing.unit,
+    [theme.breakpoints.up("sm")]: {
+      width: 75
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 65
+    }
   }
 });
 

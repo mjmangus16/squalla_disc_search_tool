@@ -6,11 +6,11 @@ const styles = theme => ({
   drawer: {
     height: "calc(100% - 64px)",
     marginTop: 64,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("xs")]: {
       width: 300
     },
-    [theme.breakpoints.down("sm")]: {
-      width: 200
+    [theme.breakpoints.down("xs")]: {
+      width: "auto"
     }
   }
 });

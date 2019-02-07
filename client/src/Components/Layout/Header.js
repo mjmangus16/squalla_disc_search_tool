@@ -6,7 +6,10 @@ import { Add, Filter } from "../header-actions/index";
 
 const styles = theme => ({
   flex: {
-    flex: 1
+    flex: 1,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: ".9em"
+    },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,

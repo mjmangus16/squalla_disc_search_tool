@@ -10,16 +10,18 @@ import Drawer from "./header-actions/Filter/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
 const styles = theme => ({
+  
   filterOpen: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    [theme.breakpoints.down("md")]: {
-      marginRight: 250
+    [theme.breakpoints.up("sm")]: {
+      marginRight: 300
     },
-    [theme.breakpoints.down("sm")]: {
-      marginRight: 0
+    [theme.breakpoints.down("xs")]: {
+      width: "50%",
+      marginRight: "auto"
     }
   },
   filterClosed: {
@@ -286,7 +288,6 @@ class App extends Component {
           clearButton={this.clear_button}
         />
         <div
-          style={{ marginRight: this.state.marginRight }}
           className={
             this.state.filter_open ? classes.filterOpen : classes.filterClosed
           }
