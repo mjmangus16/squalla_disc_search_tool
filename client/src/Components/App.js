@@ -10,7 +10,6 @@ import Drawer from "./header-actions/Filter/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
 const styles = theme => ({
-  
   filterOpen: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -294,6 +293,7 @@ class App extends Component {
         >
           <Discs toggleRatingsStatus={this.state.toggleRatings} />
         </div>
+        {/* <Footer /> */}
       </Fragment>
     );
   }

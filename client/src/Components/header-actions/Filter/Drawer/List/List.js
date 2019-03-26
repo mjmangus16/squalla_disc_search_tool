@@ -19,7 +19,6 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: "100%"
-    
   },
   button: {
     margin: "auto",
@@ -34,7 +33,9 @@ const styles = theme => ({
   gridList: {
     flexWrap: "nowrap",
     width: "auto",
-    margin: "auto", paddingLeft: 16, paddingRight: 16
+    margin: "auto",
+    paddingLeft: 16,
+    paddingRight: 16
   }
 });
 
@@ -146,12 +147,7 @@ class ListComponent extends Component {
               data="Stability"
             />
           </ListItem>
-          <GridList
-            cellHeight={86}
-            spacing={0}
-            className={classes.gridList}
-            
-          >
+          <GridList cellHeight={86} spacing={0} className={classes.gridList}>
             <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.speed}
@@ -169,12 +165,7 @@ class ListComponent extends Component {
               />
             </ListItem>
           </GridList>
-          <GridList
-            cellHeight={86}
-            spacing={0}
-            className={classes.gridList}
-            
-          >
+          <GridList cellHeight={86} spacing={0} className={classes.gridList}>
             <ListItem style={{ margin: "auto", width: "auto" }}>
               <SelectInputNumber
                 values={collectedValues.turn}

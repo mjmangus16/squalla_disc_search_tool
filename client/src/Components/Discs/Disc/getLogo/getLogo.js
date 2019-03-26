@@ -36,13 +36,14 @@ import vibram from "./images/vibram.png";
 import viking from "./images/viking.png";
 import westside from "./images/westside.png";
 import yikun from "./images/yikun.png";
+import fourthCircle from "./images/4circle.png";
 
 const getLogo = manufacturer => {
-  if (manufacturer === "DiscMania") {
+  if (manufacturer === "DiscMania" || manufacturer === "Discmania") {
     return discMania;
   } else if (manufacturer === "Discraft") {
     return discraft;
-  } else if (manufacturer === "Dynamic Discs") {
+  } else if (manufacturer === "Dynamic Discs" || manufacturer === "Dynamic") {
     return dynamic;
   } else if (manufacturer === "Innova") {
     return innova;
@@ -58,7 +59,7 @@ const getLogo = manufacturer => {
     return prodigy;
   } else if (manufacturer === "Vibram") {
     return vibram;
-  } else if (manufacturer === "Westside Discs") {
+  } else if (manufacturer === "Westside Discs" || manufacturer === "Westside") {
     return westside;
   } else if (manufacturer === "Aerobie") {
     return aerobie;
@@ -66,11 +67,14 @@ const getLogo = manufacturer => {
     return axiom;
   } else if (manufacturer === "Ching") {
     return ching;
-  } else if (manufacturer === "Daredevil Discs") {
+  } else if (
+    manufacturer === "Daredevil Discs" ||
+    manufacturer === "Daredevil"
+  ) {
     return daredevil;
   } else if (manufacturer === "DGA") {
     return dga;
-  } else if (manufacturer === "Element Discs") {
+  } else if (manufacturer === "Element Discs" || manufacturer === "Element") {
     return element;
   } else if (manufacturer === "Full Turn") {
     return fullTurn;
@@ -78,42 +82,56 @@ const getLogo = manufacturer => {
     return gateway;
   } else if (manufacturer === "Hyzer Bomb") {
     return hyzerBomb;
-  } else if (manufacturer === "Legacy Discs") {
+  } else if (manufacturer === "Legacy Discs" || manufacturer === "Legacy") {
     return legacy;
-  } else if (manufacturer === "Lightning Golf Discs") {
+  } else if (
+    manufacturer === "Lightning Golf Discs" ||
+    manufacturer === "Lightning"
+  ) {
     return lightning;
-  } else if (manufacturer === "Nite Ize Innovation") {
+  } else if (
+    manufacturer === "Nite Ize Innovation" ||
+    manufacturer === "Nite Ize"
+  ) {
     return niteIze;
   } else if (manufacturer === "Prodiscus") {
     return prodiscus;
-  } else if (manufacturer === "Reptilian Disc Golf") {
+  } else if (
+    manufacturer === "Reptilian Disc Golf" ||
+    manufacturer === "Reptilian"
+  ) {
     return reptilian;
-  } else if (manufacturer === "RPM Discs") {
+  } else if (manufacturer === "RPM Discs" || manufacturer === "RPM") {
     return rpm;
-  } else if (manufacturer === "Salient Discs") {
+  } else if (manufacturer === "Salient Discs" || manufacturer === "Salient") {
     return salient;
   } else if (manufacturer === "TOBU") {
     return tobu;
   } else if (manufacturer === "UB Hand Candy") {
     return handCandy;
-  } else if (manufacturer === "Viking Discs") {
+  } else if (manufacturer === "Viking Discs" || manufacturer === "Viking") {
     return viking;
   } else if (manufacturer === "YiKun") {
     return yikun;
   } else if (manufacturer === "AquaFlight") {
     return aquaFlight;
-  } else if (manufacturer === "Infinite Discs") {
+  } else if (manufacturer === "Infinite Discs" || manufacturer === "Infinite") {
     return infinite;
   } else if (manufacturer === "Above Ground Level") {
     return agl;
-  } else if (manufacturer === "Ozone Discs") {
+  } else if (manufacturer === "Ozone Discs" || manufacturer === "Ozone") {
     return ozone;
-  } else if (manufacturer === "Streamline Discs") {
+  } else if (
+    manufacturer === "Streamline Discs" ||
+    manufacturer === "Streamline"
+  ) {
     return streamline;
-  } else if (manufacturer === "Storm Disc Golf") {
+  } else if (manufacturer === "Storm Disc Golf" || manufacturer === "Storm") {
     return storm;
-  } else if (manufacturer === "Galaxy Disc Golf") {
+  } else if (manufacturer === "Galaxy Disc Golf" || manufacturer === "Galaxy") {
     return galaxy;
+  } else if (manufacturer === "Fourth Circle") {
+    return fourthCircle;
   }
 };
 

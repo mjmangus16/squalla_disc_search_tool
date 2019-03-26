@@ -8,9 +8,9 @@ import Disc from "./Disc/Disc";
 
 const styles = theme => ({
   container: {
-    height: "calc(100% - 64px)",
+    height: "calc(100% - 120px)",
     maxWidth: 1400,
-    margin: "64px auto auto"
+    margin: "64px auto 56px"
   }
 });
 

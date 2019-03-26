@@ -32,6 +32,7 @@ const DrawerComponent = ({
       variant="persistent"
       open={filterStatus}
       onClose={filterToggle}
+      className={classes.drawerContainer}
     >
       <div tabIndex={0} role="button" className={classes.drawer}>
         <List
