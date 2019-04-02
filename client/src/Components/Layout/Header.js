@@ -8,8 +8,8 @@ const styles = theme => ({
   flex: {
     flex: 1,
     [theme.breakpoints.down("xs")]: {
-      fontSize: ".9em"
-    },
+      fontSize: "1.15em"
+    }
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
