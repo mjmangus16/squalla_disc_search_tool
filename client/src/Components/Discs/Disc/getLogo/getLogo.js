@@ -37,6 +37,7 @@ import viking from "./images/viking.png";
 import westside from "./images/westside.png";
 import yikun from "./images/yikun.png";
 import fourthCircle from "./images/4circle.png";
+import discmaniaActive from "./images/discmaniaActive.png";
 
 const getLogo = manufacturer => {
   if (manufacturer === "DiscMania" || manufacturer === "Discmania") {
@@ -132,6 +133,8 @@ const getLogo = manufacturer => {
     return galaxy;
   } else if (manufacturer === "Fourth Circle") {
     return fourthCircle;
+  } else if (manufacturer === "Discmania Active") {
+    return discmaniaActive;
   }
 };
 
