@@ -9,7 +9,7 @@ export const getDiscs = () => dispatch => {
     .then(res => {
       dispatch({
         type: GET_DISCS,
-        payload: res.data
+        payload: shuffledArray(res.data)
       });
     })
     .catch(err => {
@@ -18,4 +18,21 @@ export const getDiscs = () => dispatch => {
         payload: {}
       });
     });
+};
+
+const shuffledArray = array => {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 };

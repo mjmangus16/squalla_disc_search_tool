@@ -19,27 +19,9 @@ class Discs extends Component {
     const { classes, toggleRatingsStatus } = this.props;
     let { discs } = this.props.discs;
 
-    const shuffledArray = array => {
-      let currentIndex = array.length,
-        temporaryValue,
-        randomIndex;
-
-      while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-      }
-
-      return array;
-    };
-
     let content;
 
     if (Object.keys(discs).length > 0) {
-      discs = shuffledArray(discs);
       content = discs.map(disc => (
         <Grid item key={discs.indexOf(disc)}>
           <Disc data={disc} status={toggleRatingsStatus} />
