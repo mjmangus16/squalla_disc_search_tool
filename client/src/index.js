@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./Components/App";
 import * as serviceWorker from "./serviceWorker";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { green, blue, red } from "@material-ui/core/colors";
+import { green, blue } from "@material-ui/core/colors";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -21,8 +21,6 @@ const theme = createMuiTheme({
     type: "dark"
   }
 });
-
-console.log(theme)
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>

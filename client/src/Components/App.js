@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { getDiscs } from "../redux/actions/discsActions";
 import { getValues } from "../redux/actions/valuesActions";
 
-import { Header, Footer } from "./Layout/index";
+import { Header } from "./Layout/index";
 import Drawer from "./header-actions/Filter/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
@@ -93,9 +93,6 @@ class App extends Component {
       fade = this.state.fadeSelections;
 
     const cards = document.querySelectorAll("#disc-card");
-
-    console.log(stability);
-    console.log(cards[0].lastChild.children[1].title);
 
     for (let i = 0; i < cards.length; i++) {
       if (cards[i].style.display !== "none") {
@@ -293,7 +290,6 @@ class App extends Component {
         >
           <Discs toggleRatingsStatus={this.state.toggleRatings} />
         </div>
-        {/* <Footer /> */}
       </Fragment>
     );
   }
