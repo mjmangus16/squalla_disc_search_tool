@@ -11,7 +11,7 @@ const styles = theme => ({
     },
     [theme.breakpoints.down("xs")]: {
       width: "auto",
-      maxWidth: 200
+      maxWidth: 190
     }
   }
 });
