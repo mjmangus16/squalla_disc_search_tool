@@ -38,6 +38,7 @@ import westside from "./images/westside.png";
 import yikun from "./images/yikun.png";
 import fourthCircle from "./images/4circle.png";
 import discmaniaActive from "./images/discmaniaActive.png";
+import discmaniaEvolution from "./images/discmaniaEvolution.png";
 
 const getLogo = manufacturer => {
   if (manufacturer === "DiscMania" || manufacturer === "Discmania") {
@@ -135,6 +136,8 @@ const getLogo = manufacturer => {
     return fourthCircle;
   } else if (manufacturer === "Discmania Active") {
     return discmaniaActive;
+  } else if (manufacturer === "Discmania Evolution") {
+    return discmaniaEvolution;
   }
 };
 
