@@ -48,7 +48,7 @@ class ListComponent extends Component {
     cards.forEach(card => {
       let name = card.lastChild.firstChild.firstChild.firstChild.textContent;
 
-      name.toUpperCase().indexOf(filter) > -1
+      name.toUpperCase().includes(filter)
         ? (card.style.display = "")
         : (card.style.display = "none");
     });
@@ -70,29 +70,10 @@ class ListComponent extends Component {
     let listContent = [];
 
     if (Object.keys(values).length > 0) {
-      for (let i = 0; i < values.length; i++) {
-        if (values[i].name === "discTypes") {
-          collectedValues.discTypes = values[i].data;
-        }
-        if (values[i].name === "manufactures") {
-          collectedValues.manufactures = values[i].data;
-        }
-        if (values[i].name === "stability") {
-          collectedValues.stability = values[i].data;
-        }
-        if (values[i].name === "speed") {
-          collectedValues.speed = values[i].data;
-        }
-        if (values[i].name === "glide") {
-          collectedValues.glide = values[i].data;
-        }
-        if (values[i].name === "turn") {
-          collectedValues.turn = values[i].data;
-        }
-        if (values[i].name === "fade") {
-          collectedValues.fade = values[i].data;
-        }
-      }
+      values.forEach(value => {
+        collectedValues[value.name] = value.data;
+      });
+
       listContent = (
         <List component="ul">
           <ListItem>
