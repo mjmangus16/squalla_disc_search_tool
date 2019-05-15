@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { getDiscs } from "../redux/actions/discsActions";
 import { getValues } from "../redux/actions/valuesActions";
 
-import { Header } from "./Layout/index";
+import Header from "./Layout/Header";
 import Drawer from "./header-actions/Filter/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
@@ -253,10 +253,7 @@ class App extends Component {
     });
 
     let cards = document.querySelectorAll("#disc-card");
-
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].style.display = "";
-    }
+    cards.forEach(card => (card.style.display = ""));
   };
 
   render() {

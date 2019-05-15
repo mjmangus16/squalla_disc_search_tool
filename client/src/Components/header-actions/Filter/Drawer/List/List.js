@@ -45,15 +45,13 @@ class ListComponent extends Component {
     let filter = input.value.toUpperCase();
     let cards = document.querySelectorAll("#disc-card");
 
-    for (let i = 0; i < cards.length; i++) {
-      let name =
-        cards[i].lastChild.firstChild.firstChild.firstChild.textContent;
-      if (name.toUpperCase().indexOf(filter) > -1) {
-        cards[i].style.display = "";
-      } else {
-        cards[i].style.display = "none";
-      }
-    }
+    cards.forEach(card => {
+      let name = card.lastChild.firstChild.firstChild.firstChild.textContent;
+
+      name.toUpperCase().indexOf(filter) > -1
+        ? (card.style.display = "")
+        : (card.style.display = "none");
+    });
   };
 
   render() {
