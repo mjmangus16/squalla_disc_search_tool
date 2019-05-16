@@ -31,6 +31,18 @@ const styles = theme => ({
   }
 });
 
+const filterRating = (rating, element, card) => {
+  rating.forEach(num => {
+    let low = parseFloat(num) - 0.5;
+    let high = parseFloat(num) + 0.5;
+    if (parseFloat(element) >= low && parseFloat(element) < high) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+};
+
 class App extends Component {
   state = {
     discs: [],
@@ -84,7 +96,9 @@ class App extends Component {
   };
 
   submit_button = () => {
-    const manufactures = this.state.manufactureSelections,
+    const manufactures = this.state.manufactureSelections.map(manuf =>
+        manuf.toLowerCase()
+      ),
       discType = this.state.discTypeSelections,
       stability = this.state.stabilitySelections,
       speed = this.state.speedSelections,
@@ -94,151 +108,210 @@ class App extends Component {
 
     const cards = document.querySelectorAll("#disc-card");
 
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+    cards.forEach(card => {
+      if (card.style.display !== "none") {
         if (manufactures.length > 0) {
-          for (let y = 0; y < manufactures.length; y++) {
-            if (
-              cards[i].firstChild.firstChild.title
-                .toLowerCase()
-                .includes(manufactures[y].toLowerCase())
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          // manufactures.includes(card.firstChild.firstChild.title)
+          //   ? (card.style.display = "")
+          //   : (card.style.display = "none");
+          card.firstChild.firstChild.title.toLowerCase().includes(manufactures)
+            ? (card.style.display = "")
+            : (card.style.display = "none");
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (discType.length > 0) {
-          for (let y = 0; y < discType.length; y++) {
-            if (
-              cards[
-                i
-              ].lastChild.firstChild.firstChild.lastChild.textContent.includes(
-                discType[y]
-              )
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          discType.includes(
+            card.lastChild.firstChild.firstChild.lastChild.textContent
+          )
+            ? (card.style.display = "")
+            : (card.style.display = "none");
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (stability.length > 0) {
-          for (let y = 0; y < stability.length; y++) {
-            if (cards[i].lastChild.children[1].title === stability[y]) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          stability.includes(card.lastChild.children[1].title)
+            ? (card.style.display = "")
+            : (card.style.display = "none");
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (speed.length > 0) {
-          for (let y = 0; y < speed.length; y++) {
-            let low = parseFloat(speed[y]) - 0.5;
-            let high = parseFloat(speed[y]) + 0.5;
-            console.log(low, high);
-            if (
-              parseFloat(
-                cards[i].lastChild.children[1].children[0].textContent
-              ) >= low &&
-              parseFloat(
-                cards[i].lastChild.children[1].children[0].textContent
-              ) < high
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          const el = card.lastChild.children[1].children[0].textContent;
+          filterRating(speed, el, card);
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (glide.length > 0) {
-          for (let y = 0; y < glide.length; y++) {
-            let low = parseFloat(glide[y]) - 0.5;
-            let high = parseFloat(glide[y]) + 0.5;
-            if (
-              parseFloat(
-                cards[i].lastChild.children[1].children[1].textContent
-              ) >= low &&
-              parseFloat(
-                cards[i].lastChild.children[1].children[1].textContent
-              ) < high
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          glide.forEach(num => {
+            const el = card.lastChild.children[1].children[1].textContent;
+            filterRating(glide, el, card);
+          });
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (turn.length > 0) {
-          for (let y = 0; y < turn.length; y++) {
-            let low = parseFloat(turn[y]) + 0.5;
-            let high = parseFloat(turn[y]) - 0.5;
-            if (
-              parseFloat(
-                cards[i].lastChild.children[1].children[2].textContent
-              ) <= low &&
-              parseFloat(
-                cards[i].lastChild.children[1].children[2].textContent
-              ) > high
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          turn.forEach(num => {
+            const el = card.lastChild.children[1].children[2].textContent;
+            filterRating(turn, el, card);
+          });
         }
       }
-    }
-    for (let i = 0; i < cards.length; i++) {
-      if (cards[i].style.display !== "none") {
+      if (card.style.display !== "none") {
         if (fade.length > 0) {
-          for (let y = 0; y < fade.length; y++) {
-            let low = parseFloat(fade[y]) - 0.5;
-            let high = parseFloat(fade[y]) + 0.5;
-            if (
-              parseFloat(
-                cards[i].lastChild.children[1].children[3].textContent
-              ) >= low &&
-              parseFloat(
-                cards[i].lastChild.children[1].children[3].textContent
-              ) < high
-            ) {
-              cards[i].style.display = "";
-              break;
-            } else {
-              cards[i].style.display = "none";
-            }
-          }
+          fade.forEach(num => {
+            const el = card.lastChild.children[1].children[3].textContent;
+            filterRating(fade, el, card);
+          });
         }
       }
-    }
+    });
+
+    // for (let i = 0; i < cards.length; i++) {
+    //   if (cards[i].style.display !== "none") {
+    //     if (manufactures.length > 0) {
+    //       for (let y = 0; y < manufactures.length; y++) {
+    //         if (
+    //           cards[i].firstChild.firstChild.title
+    //             .toLowerCase()
+    //             .includes(manufactures[y].toLowerCase())
+    //         ) {
+    //           cards[i].style.display = "";
+    //           break;
+    //         } else {
+    //           cards[i].style.display = "none";
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // for (let i = 0; i < cards.length; i++) {
+    //   if (cards[i].style.display !== "none") {
+    //     if (discType.length > 0) {
+    //       for (let y = 0; y < discType.length; y++) {
+    //         if (
+    //           cards[
+    //             i
+    //           ].lastChild.firstChild.firstChild.lastChild.textContent.includes(
+    //             discType[y]
+    //           )
+    //         ) {
+    //           cards[i].style.display = "";
+    //           break;
+    //         } else {
+    //           cards[i].style.display = "none";
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // for (let i = 0; i < cards.length; i++) {
+    //   if (cards[i].style.display !== "none") {
+    //     if (stability.length > 0) {
+    //       for (let y = 0; y < stability.length; y++) {
+    //         if (cards[i].lastChild.children[1].title === stability[y]) {
+    //           cards[i].style.display = "";
+    //           break;
+    //         } else {
+    //           cards[i].style.display = "none";
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    // for (let i = 0; i < cards.length; i++) {
+    //   if (cards[i].style.display !== "none") {
+    //     if (speed.length > 0) {
+    //       for (let y = 0; y < speed.length; y++) {
+    //         let low = parseFloat(speed[y]) - 0.5;
+    //         let high = parseFloat(speed[y]) + 0.5;
+    //         console.log(low, high);
+    //         if (
+    //           parseFloat(
+    //             cards[i].lastChild.children[1].children[0].textContent
+    //           ) >= low &&
+    //           parseFloat(
+    //             cards[i].lastChild.children[1].children[0].textContent
+    //           ) < high
+    //         ) {
+    //           cards[i].style.display = "";
+    //           break;
+    //         } else {
+    //           cards[i].style.display = "none";
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+    //   for (let i = 0; i < cards.length; i++) {
+    //     if (cards[i].style.display !== "none") {
+    //       if (glide.length > 0) {
+    //         for (let y = 0; y < glide.length; y++) {
+    //           let low = parseFloat(glide[y]) - 0.5;
+    //           let high = parseFloat(glide[y]) + 0.5;
+    //           if (
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[1].textContent
+    //             ) >= low &&
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[1].textContent
+    //             ) < high
+    //           ) {
+    //             cards[i].style.display = "";
+    //             break;
+    //           } else {
+    //             cards[i].style.display = "none";
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   for (let i = 0; i < cards.length; i++) {
+    //     if (cards[i].style.display !== "none") {
+    //       if (turn.length > 0) {
+    //         for (let y = 0; y < turn.length; y++) {
+    //           let low = parseFloat(turn[y]) + 0.5;
+    //           let high = parseFloat(turn[y]) - 0.5;
+    //           if (
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[2].textContent
+    //             ) <= low &&
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[2].textContent
+    //             ) > high
+    //           ) {
+    //             cards[i].style.display = "";
+    //             break;
+    //           } else {
+    //             cards[i].style.display = "none";
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   for (let i = 0; i < cards.length; i++) {
+    //     if (cards[i].style.display !== "none") {
+    //       if (fade.length > 0) {
+    //         for (let y = 0; y < fade.length; y++) {
+    //           let low = parseFloat(fade[y]) - 0.5;
+    //           let high = parseFloat(fade[y]) + 0.5;
+    //           if (
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[3].textContent
+    //             ) >= low &&
+    //             parseFloat(
+    //               cards[i].lastChild.children[1].children[3].textContent
+    //             ) < high
+    //           ) {
+    //             cards[i].style.display = "";
+    //             break;
+    //           } else {
+    //             cards[i].style.display = "none";
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
   };
 
   clear_button = () => {
