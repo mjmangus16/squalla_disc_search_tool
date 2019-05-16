@@ -111,7 +111,7 @@ class App extends Component {
     cards.forEach(card => {
       if (card.style.display !== "none") {
         if (manufactures.length > 0) {
-          card.firstChild.firstChild.title.toLowerCase().includes(manufactures)
+          manufactures.includes(card.firstChild.firstChild.title.toLowerCase())
             ? (card.style.display = "")
             : (card.style.display = "none");
         }
