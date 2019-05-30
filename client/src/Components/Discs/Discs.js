@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Grid, withStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getDiscs } from "../../redux/actions/discsActions";
 
 import Disc from "./Disc/Disc";
 
@@ -37,7 +36,6 @@ class Discs extends Component {
 }
 
 Discs.propTypes = {
-  getDiscs: PropTypes.func.isRequired,
   discs: PropTypes.object.isRequired
 };
 
@@ -45,7 +43,4 @@ const mapStateToProps = state => ({
   discs: state.discs
 });
 
-export default connect(
-  mapStateToProps,
-  { getDiscs }
-)(withStyles(styles)(Discs));
+export default connect(mapStateToProps)(withStyles(styles)(Discs));

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { CssBaseline, withStyles } from "@material-ui/core";
+import { CssBaseline, withStyles, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getDiscs } from "../redux/actions/discsActions";
