@@ -32,15 +32,17 @@ const styles = theme => ({
 });
 
 const filterRating = (rating, element, card) => {
-  rating.forEach(num => {
-    let low = parseFloat(num) - 0.5;
-    let high = parseFloat(num) + 0.5;
+  for (let i = 0; i < rating.length; i++) {
+    let low = parseFloat(rating[i]) - 0.5;
+    let high = parseFloat(rating[i]) + 0.5;
+
     if (parseFloat(element) >= low && parseFloat(element) < high) {
       card.style.display = "";
+      break;
     } else {
       card.style.display = "none";
     }
-  });
+  }
 };
 
 class App extends Component {
