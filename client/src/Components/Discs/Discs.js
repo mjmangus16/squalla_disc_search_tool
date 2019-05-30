@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Grid, withStyles } from "@material-ui/core";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import Disc from "./Disc/Disc";
 
@@ -15,14 +13,13 @@ const styles = theme => ({
 
 class Discs extends Component {
   render() {
-    const { classes, toggleRatingsStatus } = this.props;
-    let { discs } = this.props.discs;
+    const { classes, toggleRatingsStatus, filteredDiscs } = this.props;
 
     let content;
 
-    if (Object.keys(discs).length > 0) {
-      content = discs.map(disc => (
-        <Grid item key={discs.indexOf(disc)}>
+    if (filteredDiscs.length > 0) {
+      content = filteredDiscs.map((disc, i) => (
+        <Grid item key={`disc-${i}`}>
           <Disc data={disc} status={toggleRatingsStatus} />
         </Grid>
       ));
@@ -35,12 +32,4 @@ class Discs extends Component {
   }
 }
 
-Discs.propTypes = {
-  discs: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  discs: state.discs
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(Discs));
+export default withStyles(styles)(Discs);

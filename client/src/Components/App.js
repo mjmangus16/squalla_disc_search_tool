@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { CssBaseline, withStyles, Grid } from "@material-ui/core";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getDiscs } from "../redux/actions/discsActions";
-import { getValues } from "../redux/actions/valuesActions";
+import { CssBaseline, withStyles } from "@material-ui/core";
+import axios from "axios";
 
 import Header from "./Layout/Header";
 import Drawer from "./header-actions/Filter/Drawer/Drawer";
@@ -45,9 +42,27 @@ const filterRating = (rating, element, card) => {
   }
 };
 
+const shuffledArray = array => {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+};
+
 class App extends Component {
   state = {
-    discs: [],
+    staticDiscs: [],
+    filteredDiscs: [],
     add_disc_open: false,
     filter_open: true,
     toggleRatings: false,
@@ -57,12 +72,27 @@ class App extends Component {
     speedSelections: [],
     glideSelections: [],
     turnSelections: [],
-    fadeSelections: []
+    fadeSelections: [],
+    values: []
   };
 
   componentDidMount() {
-    this.props.getDiscs();
-    this.props.getValues();
+    axios.get("/api/discs/all").then(discs => {
+      this.setState(() => {
+        return {
+          staticDiscs: discs.data,
+          filteredDiscs: shuffledArray(discs.data)
+        };
+      });
+    });
+
+    axios.get("/api/values/all").then(values => {
+      this.setState(() => {
+        return {
+          values: values.data
+        };
+      });
+    });
   }
 
   toggle_ratings = () => {
@@ -108,67 +138,78 @@ class App extends Component {
       turn = this.state.turnSelections,
       fade = this.state.fadeSelections;
 
-    const cards = document.querySelectorAll("#disc-card");
-
-    cards.forEach(card => {
-      if (card.style.display !== "none") {
-        if (manufactures.length > 0) {
-          manufactures.includes(card.firstChild.firstChild.title.toLowerCase())
-            ? (card.style.display = "")
-            : (card.style.display = "none");
-        }
-      }
-      if (card.style.display !== "none") {
-        if (discType.length > 0) {
-          discType.includes(
-            card.lastChild.firstChild.firstChild.lastChild.textContent
+    if (manufactures.length > 0) {
+      this.setState(prevState => {
+        return {
+          filteredDiscs: prevState.filteredDiscs.filter(disc =>
+            manufactures.includes(disc.manufacture.toLowerCase())
           )
-            ? (card.style.display = "")
-            : (card.style.display = "none");
-        }
-      }
-      if (card.style.display !== "none") {
-        if (stability.length > 0) {
-          stability.includes(card.lastChild.children[1].title)
-            ? (card.style.display = "")
-            : (card.style.display = "none");
-        }
-      }
-      if (card.style.display !== "none") {
-        if (speed.length > 0) {
-          const el = card.lastChild.children[1].children[0].textContent;
-          filterRating(speed, el, card);
-        }
-      }
-      if (card.style.display !== "none") {
-        if (glide.length > 0) {
-          glide.forEach(num => {
-            const el = card.lastChild.children[1].children[1].textContent;
-            filterRating(glide, el, card);
-          });
-        }
-      }
-      if (card.style.display !== "none") {
-        if (turn.length > 0) {
-          turn.forEach(num => {
-            const el = card.lastChild.children[1].children[2].textContent;
-            filterRating(turn, el, card);
-          });
-        }
-      }
-      if (card.style.display !== "none") {
-        if (fade.length > 0) {
-          fade.forEach(num => {
-            const el = card.lastChild.children[1].children[3].textContent;
-            filterRating(fade, el, card);
-          });
-        }
-      }
-    });
+        };
+      });
+    }
+
+    // const cards = document.querySelectorAll("#disc-card");
+
+    // cards.forEach(card => {
+    //   if (card.style.display !== "none") {
+    //     if (manufactures.length > 0) {
+    //       manufactures.includes(card.firstChild.firstChild.title.toLowerCase())
+    //         ? (card.style.display = "")
+    //         : (card.style.display = "none");
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (discType.length > 0) {
+    //       discType.includes(
+    //         card.lastChild.firstChild.firstChild.lastChild.textContent
+    //       )
+    //         ? (card.style.display = "")
+    //         : (card.style.display = "none");
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (stability.length > 0) {
+    //       stability.includes(card.lastChild.children[1].title)
+    //         ? (card.style.display = "")
+    //         : (card.style.display = "none");
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (speed.length > 0) {
+    //       const el = card.lastChild.children[1].children[0].textContent;
+    //       filterRating(speed, el, card);
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (glide.length > 0) {
+    //       glide.forEach(num => {
+    //         const el = card.lastChild.children[1].children[1].textContent;
+    //         filterRating(glide, el, card);
+    //       });
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (turn.length > 0) {
+    //       turn.forEach(num => {
+    //         const el = card.lastChild.children[1].children[2].textContent;
+    //         filterRating(turn, el, card);
+    //       });
+    //     }
+    //   }
+    //   if (card.style.display !== "none") {
+    //     if (fade.length > 0) {
+    //       fade.forEach(num => {
+    //         const el = card.lastChild.children[1].children[3].textContent;
+    //         filterRating(fade, el, card);
+    //       });
+    //     }
+    //   }
+    // });
   };
 
   clear_button = () => {
     this.setState({
+      filteredDiscs: this.state.staticDiscs,
       manufactureSelections: [],
       discTypeSelections: [],
       stabilitySelections: [],
@@ -177,13 +218,12 @@ class App extends Component {
       turnSelections: [],
       fadeSelections: []
     });
-
-    let cards = document.querySelectorAll("#disc-card");
-    cards.forEach(card => (card.style.display = ""));
   };
 
   render() {
     const { classes } = this.props;
+    const { filteredDiscs, values } = this.state;
+
     return (
       <Fragment>
         <CssBaseline />
@@ -205,32 +245,21 @@ class App extends Component {
           }}
           submitButton={this.submit_button}
           clearButton={this.clear_button}
+          values={values}
         />
         <div
           className={
             this.state.filter_open ? classes.filterOpen : classes.filterClosed
           }
         >
-          <Discs toggleRatingsStatus={this.state.toggleRatings} />
+          <Discs
+            toggleRatingsStatus={this.state.toggleRatings}
+            filteredDiscs={filteredDiscs}
+          />
         </div>
       </Fragment>
     );
   }
 }
 
-App.propTypes = {
-  getDiscs: PropTypes.func.isRequired,
-  getValues: PropTypes.func.isRequired,
-  discs: PropTypes.object.isRequired,
-  values: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  discs: state.discs,
-  values: state.values
-});
-
-export default connect(
-  mapStateToProps,
-  { getDiscs, getValues }
-)(withStyles(styles)(App));
+export default withStyles(styles)(App);

@@ -25,7 +25,8 @@ const DrawerComponent = ({
   filterHandlers,
   filterSelections,
   submitButton,
-  clearButton
+  clearButton,
+  values
 }) => {
   return (
     <Drawer
@@ -43,6 +44,7 @@ const DrawerComponent = ({
           selections={filterSelections}
           submitButton={submitButton}
           clearButton={clearButton}
+          values={values}
         />
       </div>
     </Drawer>

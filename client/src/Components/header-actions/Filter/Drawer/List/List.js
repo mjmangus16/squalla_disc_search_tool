@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import {
   List,
   ListItem,
@@ -62,14 +61,14 @@ class ListComponent extends Component {
       selections,
       handlers,
       submitButton,
-      clearButton
+      clearButton,
+      values
     } = this.props;
 
-    let { values } = this.props.values;
     let collectedValues = {};
     let listContent = [];
 
-    if (Object.keys(values).length > 0) {
+    if (values.length > 0) {
       values.forEach(value => {
         collectedValues[value.name] = value.data;
       });
@@ -186,8 +185,4 @@ class ListComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  values: state.values
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(ListComponent));
+export default withStyles(styles)(ListComponent);
