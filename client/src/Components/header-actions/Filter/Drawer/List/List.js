@@ -8,7 +8,8 @@ import {
   FormControlLabel,
   Switch,
   GridList,
-  withStyles
+  withStyles,
+  Typography
 } from "@material-ui/core";
 import SelectInputText from "./Select/SelectInputText";
 import SelectInputNumber from "./Select/SelectInputNumber";
@@ -39,20 +40,6 @@ const styles = theme => ({
 });
 
 class ListComponent extends Component {
-  // searchByNameHandler = () => {
-  //   let input = document.getElementById("name-search");
-  //   let filter = input.value.toUpperCase();
-  //   let cards = document.querySelectorAll("#disc-card");
-
-  //   cards.forEach(card => {
-  //     let name = card.lastChild.firstChild.firstChild.firstChild.textContent;
-
-  //     name.toUpperCase().includes(filter)
-  //       ? (card.style.display = "")
-  //       : (card.style.display = "none");
-  //   });
-  // };
-
   render() {
     const {
       classes,
@@ -63,7 +50,9 @@ class ListComponent extends Component {
       submitButton,
       clearButton,
       values,
-      searchByName
+      searchByName,
+      count,
+      totalCount
     } = this.props;
 
     let collectedValues = {};
@@ -76,6 +65,9 @@ class ListComponent extends Component {
 
       listContent = (
         <List component="ul">
+          <ListItem>
+            <Typography>{`Showing ${count} of ${totalCount}`}</Typography>
+          </ListItem>
           <ListItem>
             <FormGroup row>
               <FormControlLabel

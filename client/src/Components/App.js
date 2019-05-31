@@ -103,15 +103,7 @@ class App extends Component {
   };
 
   filter_toggle = () => {
-    if (this.state.filter_open === false) {
-      this.setState({
-        filter_open: true
-      });
-    } else {
-      this.setState({
-        filter_open: false
-      });
-    }
+    this.setState({ filter_open: !this.state.filter_open });
   };
 
   filter_handlers = {
@@ -135,7 +127,7 @@ class App extends Component {
       turn = this.state.turnSelections,
       fade = this.state.fadeSelections;
 
-    let container = [...this.state.discs];
+    let container = [...this.state.staticDiscs];
 
     if (manufactures.length > 0) {
       container = container.filter(disc =>
@@ -225,10 +217,9 @@ class App extends Component {
   };
 
   search_by_name = value => {
-    const container = [...this.state.staticDiscs];
-    this.setState(() => {
+    this.setState(prevState => {
       return {
-        discs: container.filter(disc =>
+        discs: prevState.staticDiscs.filter(disc =>
           disc.discName.toLowerCase().includes(value.toLowerCase())
         )
       };
@@ -237,7 +228,9 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    const { discs, values } = this.state;
+    const { values } = this.state;
+    const discs = [...this.state.discs].splice(0, 100);
+    const totalCount = this.state.staticDiscs.length;
 
     return (
       <Fragment>
@@ -262,6 +255,8 @@ class App extends Component {
           clearButton={this.clear_button}
           values={values}
           searchByName={this.search_by_name}
+          count={discs.length}
+          totalCount={totalCount}
         />
         <div
           className={
