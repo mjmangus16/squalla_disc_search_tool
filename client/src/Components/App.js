@@ -28,17 +28,18 @@ const styles = theme => ({
   }
 });
 
-const filterRating = (rating, element, card) => {
-  for (let i = 0; i < rating.length; i++) {
-    let low = parseFloat(rating[i]) - 0.5;
-    let high = parseFloat(rating[i]) + 0.5;
+const filterRating = (rating, num) => {
+  if (num) {
+    for (let i = 0; i < rating.length; i++) {
+      let low = parseFloat(rating[i]) - 0.5;
+      let high = parseFloat(rating[i]) + 0.5;
 
-    if (parseFloat(element) >= low && parseFloat(element) < high) {
-      card.style.display = "";
-      break;
-    } else {
-      card.style.display = "none";
+      if (parseFloat(num) >= low && parseFloat(num) < high) {
+        return true;
+      }
     }
+  } else {
+    return false;
   }
 };
 
@@ -61,8 +62,7 @@ const shuffledArray = array => {
 
 class App extends Component {
   state = {
-    staticDiscs: [],
-    filteredDiscs: [],
+    discs: [],
     add_disc_open: false,
     filter_open: true,
     toggleRatings: false,
@@ -78,19 +78,14 @@ class App extends Component {
 
   componentDidMount() {
     axios.get("/api/discs/all").then(discs => {
-      this.setState(() => {
-        return {
-          staticDiscs: discs.data,
-          filteredDiscs: shuffledArray(discs.data)
-        };
+      this.setState({
+        discs: shuffledArray(discs.data)
       });
     });
 
     axios.get("/api/values/all").then(values => {
-      this.setState(() => {
-        return {
-          values: values.data
-        };
+      this.setState({
+        values: values.data
       });
     });
   }
@@ -138,78 +133,84 @@ class App extends Component {
       turn = this.state.turnSelections,
       fade = this.state.fadeSelections;
 
+    let container = [...this.state.discs];
+
     if (manufactures.length > 0) {
-      this.setState(prevState => {
-        return {
-          filteredDiscs: prevState.filteredDiscs.filter(disc =>
-            manufactures.includes(disc.manufacture.toLowerCase())
-          )
-        };
-      });
+      container = container.filter(disc =>
+        manufactures.includes(disc.manufacture.toLowerCase())
+      );
+    }
+    if (discType.length > 0) {
+      container = container.filter(disc => discType.includes(disc.discType));
+    }
+    if (stability.length > 0) {
+      container = container.filter(disc => stability.includes(disc.stability));
+    }
+    if (speed.length > 0) {
+      if (this.state.toggleRatings === false) {
+        container = container.filter(disc =>
+          filterRating(speed, disc.infiniteRatings.speed)
+        );
+      } else if (this.state.toggleRatings === true) {
+        container = container.filter(disc =>
+          disc.manufactureRatings
+            ? filterRating(speed, disc.manufactureRatings.speed)
+            : false
+        );
+      }
     }
 
-    // const cards = document.querySelectorAll("#disc-card");
+    if (glide.length > 0) {
+      if (this.state.toggleRatings === false) {
+        container = container.filter(disc =>
+          filterRating(glide, disc.infiniteRatings.glide)
+        );
+      } else if (this.state.toggleRatings === true) {
+        container = container.filter(disc =>
+          disc.manufactureRatings
+            ? filterRating(glide, disc.manufactureRatings.glide)
+            : false
+        );
+      }
+    }
 
-    // cards.forEach(card => {
-    //   if (card.style.display !== "none") {
-    //     if (manufactures.length > 0) {
-    //       manufactures.includes(card.firstChild.firstChild.title.toLowerCase())
-    //         ? (card.style.display = "")
-    //         : (card.style.display = "none");
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (discType.length > 0) {
-    //       discType.includes(
-    //         card.lastChild.firstChild.firstChild.lastChild.textContent
-    //       )
-    //         ? (card.style.display = "")
-    //         : (card.style.display = "none");
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (stability.length > 0) {
-    //       stability.includes(card.lastChild.children[1].title)
-    //         ? (card.style.display = "")
-    //         : (card.style.display = "none");
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (speed.length > 0) {
-    //       const el = card.lastChild.children[1].children[0].textContent;
-    //       filterRating(speed, el, card);
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (glide.length > 0) {
-    //       glide.forEach(num => {
-    //         const el = card.lastChild.children[1].children[1].textContent;
-    //         filterRating(glide, el, card);
-    //       });
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (turn.length > 0) {
-    //       turn.forEach(num => {
-    //         const el = card.lastChild.children[1].children[2].textContent;
-    //         filterRating(turn, el, card);
-    //       });
-    //     }
-    //   }
-    //   if (card.style.display !== "none") {
-    //     if (fade.length > 0) {
-    //       fade.forEach(num => {
-    //         const el = card.lastChild.children[1].children[3].textContent;
-    //         filterRating(fade, el, card);
-    //       });
-    //     }
-    //   }
-    // });
+    if (turn.length > 0) {
+      if (this.state.toggleRatings === false) {
+        container = container.filter(disc =>
+          filterRating(turn, disc.infiniteRatings.turn)
+        );
+      } else if (this.state.toggleRatings === true) {
+        container = container.filter(disc =>
+          disc.manufactureRatings
+            ? filterRating(turn, disc.manufactureRatings.turn)
+            : false
+        );
+      }
+    }
+
+    if (fade.length > 0) {
+      if (this.state.toggleRatings === false) {
+        container = container.filter(disc =>
+          filterRating(fade, disc.infiniteRatings.fade)
+        );
+      } else if (this.state.toggleRatings === true) {
+        container = container.filter(disc =>
+          disc.manufactureRatings
+            ? filterRating(fade, disc.manufactureRatings.fade)
+            : false
+        );
+      }
+    }
+
+    this.setState(() => {
+      return {
+        discs: container
+      };
+    });
   };
 
   clear_button = () => {
     this.setState({
-      filteredDiscs: this.state.staticDiscs,
       manufactureSelections: [],
       discTypeSelections: [],
       stabilitySelections: [],
@@ -218,11 +219,17 @@ class App extends Component {
       turnSelections: [],
       fadeSelections: []
     });
+
+    axios.get("/api/discs/all").then(discs => {
+      this.setState({
+        discs: shuffledArray(discs.data)
+      });
+    });
   };
 
   render() {
     const { classes } = this.props;
-    const { filteredDiscs, values } = this.state;
+    const { discs, values } = this.state;
 
     return (
       <Fragment>
@@ -252,10 +259,7 @@ class App extends Component {
             this.state.filter_open ? classes.filterOpen : classes.filterClosed
           }
         >
-          <Discs
-            toggleRatingsStatus={this.state.toggleRatings}
-            filteredDiscs={filteredDiscs}
-          />
+          <Discs toggleRatingsStatus={this.state.toggleRatings} discs={discs} />
         </div>
       </Fragment>
     );

@@ -13,12 +13,12 @@ const styles = theme => ({
 
 class Discs extends Component {
   render() {
-    const { classes, toggleRatingsStatus, filteredDiscs } = this.props;
+    const { classes, toggleRatingsStatus, discs } = this.props;
 
     let content;
 
-    if (filteredDiscs.length > 0) {
-      content = filteredDiscs.map((disc, i) => (
+    if (discs.length > 0) {
+      content = discs.map((disc, i) => (
         <Grid item key={`disc-${i}`}>
           <Disc data={disc} status={toggleRatingsStatus} />
         </Grid>
