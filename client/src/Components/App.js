@@ -62,6 +62,7 @@ const shuffledArray = array => {
 
 class App extends Component {
   state = {
+    staticDiscs: [],
     discs: [],
     add_disc_open: false,
     filter_open: true,
@@ -79,7 +80,8 @@ class App extends Component {
   componentDidMount() {
     axios.get("/api/discs/all").then(discs => {
       this.setState({
-        discs: shuffledArray(discs.data)
+        discs: shuffledArray(discs.data),
+        staticDiscs: shuffledArray(discs.data)
       });
     });
 
@@ -211,6 +213,7 @@ class App extends Component {
 
   clear_button = () => {
     this.setState({
+      discs: [...this.state.staticDiscs],
       manufactureSelections: [],
       discTypeSelections: [],
       stabilitySelections: [],
@@ -219,11 +222,16 @@ class App extends Component {
       turnSelections: [],
       fadeSelections: []
     });
+  };
 
-    axios.get("/api/discs/all").then(discs => {
-      this.setState({
-        discs: shuffledArray(discs.data)
-      });
+  search_by_name = value => {
+    const container = [...this.state.staticDiscs];
+    this.setState(() => {
+      return {
+        discs: container.filter(disc =>
+          disc.discName.toLowerCase().includes(value.toLowerCase())
+        )
+      };
     });
   };
 
@@ -253,6 +261,7 @@ class App extends Component {
           submitButton={this.submit_button}
           clearButton={this.clear_button}
           values={values}
+          searchByName={this.search_by_name}
         />
         <div
           className={

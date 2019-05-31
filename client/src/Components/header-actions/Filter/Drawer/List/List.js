@@ -39,19 +39,19 @@ const styles = theme => ({
 });
 
 class ListComponent extends Component {
-  searchByNameHandler = () => {
-    let input = document.getElementById("name-search");
-    let filter = input.value.toUpperCase();
-    let cards = document.querySelectorAll("#disc-card");
+  // searchByNameHandler = () => {
+  //   let input = document.getElementById("name-search");
+  //   let filter = input.value.toUpperCase();
+  //   let cards = document.querySelectorAll("#disc-card");
 
-    cards.forEach(card => {
-      let name = card.lastChild.firstChild.firstChild.firstChild.textContent;
+  //   cards.forEach(card => {
+  //     let name = card.lastChild.firstChild.firstChild.firstChild.textContent;
 
-      name.toUpperCase().includes(filter)
-        ? (card.style.display = "")
-        : (card.style.display = "none");
-    });
-  };
+  //     name.toUpperCase().includes(filter)
+  //       ? (card.style.display = "")
+  //       : (card.style.display = "none");
+  //   });
+  // };
 
   render() {
     const {
@@ -62,7 +62,8 @@ class ListComponent extends Component {
       handlers,
       submitButton,
       clearButton,
-      values
+      values,
+      searchByName
     } = this.props;
 
     let collectedValues = {};
@@ -98,7 +99,7 @@ class ListComponent extends Component {
               className={classes.textField}
               label="Search by name"
               id="name-search"
-              onChange={this.searchByNameHandler}
+              onChange={e => searchByName(e.target.value)}
             />
           </ListItem>
           <ListItem>

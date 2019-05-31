@@ -26,7 +26,8 @@ const DrawerComponent = ({
   filterSelections,
   submitButton,
   clearButton,
-  values
+  values,
+  searchByName
 }) => {
   return (
     <Drawer
@@ -45,6 +46,7 @@ const DrawerComponent = ({
           submitButton={submitButton}
           clearButton={clearButton}
           values={values}
+          searchByName={searchByName}
         />
       </div>
     </Drawer>
