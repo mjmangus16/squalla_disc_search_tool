@@ -26,7 +26,12 @@ class SelectInput extends Component {
     const { classes, values, data, handleChange, selection } = this.props;
 
     return (
-      <FormControl className={classes.formControl}>
+      <FormControl
+        className={classes.formControl}
+        style={
+          data === "Count" ? { marginTop: 0, paddingTop: 0, width: 65 } : {}
+        }
+      >
         <InputLabel htmlFor="select-multiple-checkbox">{data}</InputLabel>
         <Select
           multiple

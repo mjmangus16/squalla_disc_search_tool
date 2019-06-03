@@ -9,7 +9,9 @@ import {
   Switch,
   GridList,
   withStyles,
-  Typography
+  Typography,
+  MenuItem,
+  Select
 } from "@material-ui/core";
 import SelectInputText from "./Select/SelectInputText";
 import SelectInputNumber from "./Select/SelectInputNumber";
@@ -52,7 +54,8 @@ class ListComponent extends Component {
       values,
       searchByName,
       count,
-      totalCount
+      totalCount,
+      showCount
     } = this.props;
 
     let collectedValues = {};
@@ -66,8 +69,31 @@ class ListComponent extends Component {
       listContent = (
         <List component="ul">
           <ListItem>
-            <Typography>{`Showing ${count} of ${totalCount}`}</Typography>
+            <Select
+              value={showCount}
+              onChange={handlers.count}
+              inputProps={{
+                name: "Count",
+                id: "count-simple"
+              }}
+              style={{
+                width: 60,
+                marginTop: 10,
+                marginLeft: 10,
+                marginRight: 10
+              }}
+            >
+              <MenuItem value={25}>25</MenuItem>
+              <MenuItem value={50}>50</MenuItem>
+              <MenuItem value={75}>75</MenuItem>
+              <MenuItem value={100}>100</MenuItem>
+              <MenuItem value={125}>125</MenuItem>
+            </Select>
+            <Typography
+              style={{ paddingTop: 6, fontSize: "1rem", color: "lightgrey" }}
+            >{` of ${totalCount}`}</Typography>
           </ListItem>
+
           <ListItem>
             <FormGroup row>
               <FormControlLabel

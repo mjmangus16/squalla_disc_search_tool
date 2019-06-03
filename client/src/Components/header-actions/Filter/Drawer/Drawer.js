@@ -29,7 +29,8 @@ const DrawerComponent = ({
   values,
   searchByName,
   count,
-  totalCount
+  totalCount,
+  showCount
 }) => {
   return (
     <Drawer
@@ -51,6 +52,7 @@ const DrawerComponent = ({
           searchByName={searchByName}
           count={count}
           totalCount={totalCount}
+          showCount={showCount}
         />
       </div>
     </Drawer>

@@ -64,6 +64,7 @@ class App extends Component {
   state = {
     staticDiscs: [],
     discs: [],
+    showCount: 25,
     add_disc_open: false,
     filter_open: true,
     toggleRatings: false,
@@ -113,7 +114,8 @@ class App extends Component {
     speed: e => this.setState({ speedSelections: e.target.value }),
     glide: e => this.setState({ glideSelections: e.target.value }),
     turn: e => this.setState({ turnSelections: e.target.value }),
-    fade: e => this.setState({ fadeSelections: e.target.value })
+    fade: e => this.setState({ fadeSelections: e.target.value }),
+    count: e => this.setState({ showCount: e.target.value })
   };
 
   submit_button = () => {
@@ -228,9 +230,9 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    const { values } = this.state;
-    const discs = [...this.state.discs].splice(0, 100);
-    const totalCount = this.state.staticDiscs.length;
+    const { values, showCount } = this.state;
+    const totalCount = this.state.discs.length;
+    const discs = [...this.state.discs].splice(0, showCount);
 
     return (
       <Fragment>
@@ -256,6 +258,7 @@ class App extends Component {
           values={values}
           searchByName={this.search_by_name}
           count={discs.length}
+          showCount={showCount}
           totalCount={totalCount}
         />
         <div
