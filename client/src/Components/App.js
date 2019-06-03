@@ -237,7 +237,7 @@ class App extends Component {
     return (
       <Fragment>
         <CssBaseline />
-        <Header filterToggle={this.filter_toggle} />
+        <Header filterToggle={this.filter_toggle} values={values} />
         <Drawer
           filterToggle={this.filter_toggle}
           filterStatus={this.state.filter_open}
@@ -257,7 +257,6 @@ class App extends Component {
           clearButton={this.clear_button}
           values={values}
           searchByName={this.search_by_name}
-          count={discs.length}
           showCount={showCount}
           totalCount={totalCount}
         />

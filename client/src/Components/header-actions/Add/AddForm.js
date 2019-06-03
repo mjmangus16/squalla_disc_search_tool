@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import {
   TextField,
   Select,
@@ -171,11 +169,10 @@ class Form extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { values } = this.props.values;
+    const { classes, values } = this.props;
     let collectedValues = {};
 
-    if (Object.keys(values).length > 0) {
+    if (values.length > 0) {
       values.forEach(value => {
         collectedValues[value.name] = value.data;
       });
@@ -377,12 +374,4 @@ class Form extends Component {
   }
 }
 
-Form.propTypes = {
-  values: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  values: state.values
-});
-
-export default connect(mapStateToProps)(withStyles(styles)(Form));
+export default withStyles(styles)(Form);

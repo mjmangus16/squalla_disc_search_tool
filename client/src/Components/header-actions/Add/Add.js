@@ -67,7 +67,7 @@ class AddDialog extends Component {
 
   render() {
     const { open, success } = this.state;
-    const { classes } = this.props;
+    const { classes, values } = this.props;
     const { isAuthenticated } = this.props.auth;
 
     let dialogContent;
@@ -89,7 +89,7 @@ class AddDialog extends Component {
                 <DialogContentText>
                   Please fill out the form below
                 </DialogContentText>
-                <AddForm success={this.handleSuccess} />
+                <AddForm success={this.handleSuccess} values={values} />
               </DialogContent>
             </Dialog>
           );

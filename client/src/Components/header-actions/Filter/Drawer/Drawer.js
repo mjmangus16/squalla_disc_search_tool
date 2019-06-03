@@ -28,7 +28,6 @@ const DrawerComponent = ({
   clearButton,
   values,
   searchByName,
-  count,
   totalCount,
   showCount
 }) => {
@@ -50,7 +49,6 @@ const DrawerComponent = ({
           clearButton={clearButton}
           values={values}
           searchByName={searchByName}
-          count={count}
           totalCount={totalCount}
           showCount={showCount}
         />

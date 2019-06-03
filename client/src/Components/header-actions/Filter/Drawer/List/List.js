@@ -53,7 +53,6 @@ class ListComponent extends Component {
       clearButton,
       values,
       searchByName,
-      count,
       totalCount,
       showCount
     } = this.props;

@@ -17,14 +17,14 @@ const styles = theme => ({
   }
 });
 
-const Header = ({ classes, filterToggle }) => {
+const Header = ({ classes, filterToggle, values }) => {
   return (
     <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="headline" color="inherit" className={classes.flex}>
           Squalla Disc Search Tool
         </Typography>
-        {/* <Add /> */}
+        <Add values={values} />
         <Filter filterToggle={filterToggle} />
       </Toolbar>
     </AppBar>
