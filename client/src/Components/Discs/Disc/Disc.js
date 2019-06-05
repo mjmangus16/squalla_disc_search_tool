@@ -12,8 +12,10 @@ import {
 import { orange } from "@material-ui/core/colors";
 
 import InfiniteRatings from "./Ratings/InfiniteRatings";
+import manufactureRatings from "./Ratings/ManufactureRatings";
 
 import getLogo from "./getLogo/getLogo";
+import ManufactureRatings from "./Ratings/ManufactureRatings";
 
 const styles = {
   card: {
@@ -89,104 +91,9 @@ export default withStyles(styles)(({ classes, data, status }) => {
   let ratingsContent;
 
   if (status) {
-    if (data.manufactureRatings && data.manufactureRatings.speed !== 0) {
-      ratingsContent = (
-        <div className={classes.ratingsContainer}>
-          <Typography
-            variant="h6"
-            align="center"
-            className={classes.rating}
-            classes={{ h6: classes.h6 }}
-          >
-            {data.manufactureRatings.speed
-              ? data.manufactureRatings.speed
-              : "n/a"}
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            className={classes.rating}
-            classes={{ h6: classes.h6 }}
-          >
-            {data.manufactureRatings.glide ||
-            data.manufactureRatings.glide === 0
-              ? data.manufactureRatings.glide
-              : "n/a"}
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            className={classes.rating}
-            classes={{ h6: classes.h6 }}
-          >
-            {data.manufactureRatings.turn || data.manufactureRatings.turn === 0
-              ? data.manufactureRatings.turn
-              : "n/a"}
-          </Typography>
-          <Typography
-            variant="h6"
-            align="center"
-            className={classes.rating4}
-            classes={{ h6: classes.h6 }}
-          >
-            {data.manufactureRatings.fade || data.manufactureRatings.fade === 0
-              ? data.manufactureRatings.fade
-              : "n/a"}
-          </Typography>
-        </div>
-      );
-    } else {
-      ratingsContent = (
-        <div className={classes.ratingsContainer}>
-          <Typography
-            variant="h6"
-            align="center"
-            className={classes.unavailable}
-            classes={{ h6: classes.h6 }}
-          >
-            Unavailable
-          </Typography>
-        </div>
-      );
-    }
+    ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
   } else {
     ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
-    // ratingsContent = (
-    //   <div className={classes.ratingsContainer}>
-    //     <Typography
-    //       variant="h6"
-    //       align="center"
-    //       className={classes.rating}
-    //       classes={{ h6: classes.h6 }}
-    //     >
-    //       {data.infiniteRatings.speed}
-    //     </Typography>
-    //     <Typography
-    //       variant="h6"
-    //       align="center"
-    //       className={classes.rating}
-    //       classes={{ h6: classes.h6 }}
-    //     >
-    //       {data.infiniteRatings.glide}
-    //     </Typography>
-    //     <Typography
-    //       variant="h6"
-    //       align="center"
-    //       className={classes.rating}
-    //       classes={{ h6: classes.h6 }}
-    //     >
-    //       {data.infiniteRatings.turn}
-    //     </Typography>
-    //     <Typography
-    //       variant="h6"
-    //       align="center"
-    //       className={classes.rating4}
-    //       classes={{ h6: classes.h6 }}
-    //     >
-    //       {data.infiniteRatings.fade}
-    //     </Typography>
-    //   </div>
-    // );
   }
 
   return (
