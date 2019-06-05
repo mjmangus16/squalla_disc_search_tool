@@ -36,7 +36,7 @@ const styles = {
 };
 
 const ManufactureRatings = ({ classes, ratings }) => {
-  if (ratings && ratings.speed !== 0) {
+  if (ratings && ratings.speed !== 0 && ratings.speed !== "") {
     return (
       <div className={classes.ratingsContainer}>
         <Typography
