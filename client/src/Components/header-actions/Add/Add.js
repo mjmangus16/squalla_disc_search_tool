@@ -33,7 +33,8 @@ class AddDialog extends Component {
     open: false,
     success: false,
     email: "",
-    password: ""
+    password: "",
+    auth: false
   };
 
   handleToggle = () => {

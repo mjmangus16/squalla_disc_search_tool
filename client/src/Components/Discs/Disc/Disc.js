@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import { orange } from "@material-ui/core/colors";
 
+import InfiniteRatings from "./Ratings/InfiniteRatings";
+
 import getLogo from "./getLogo/getLogo";
 
 const styles = {
@@ -148,42 +150,43 @@ export default withStyles(styles)(({ classes, data, status }) => {
       );
     }
   } else {
-    ratingsContent = (
-      <div className={classes.ratingsContainer}>
-        <Typography
-          variant="h6"
-          align="center"
-          className={classes.rating}
-          classes={{ h6: classes.h6 }}
-        >
-          {data.infiniteRatings.speed}
-        </Typography>
-        <Typography
-          variant="h6"
-          align="center"
-          className={classes.rating}
-          classes={{ h6: classes.h6 }}
-        >
-          {data.infiniteRatings.glide}
-        </Typography>
-        <Typography
-          variant="h6"
-          align="center"
-          className={classes.rating}
-          classes={{ h6: classes.h6 }}
-        >
-          {data.infiniteRatings.turn}
-        </Typography>
-        <Typography
-          variant="h6"
-          align="center"
-          className={classes.rating4}
-          classes={{ h6: classes.h6 }}
-        >
-          {data.infiniteRatings.fade}
-        </Typography>
-      </div>
-    );
+    ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
+    // ratingsContent = (
+    //   <div className={classes.ratingsContainer}>
+    //     <Typography
+    //       variant="h6"
+    //       align="center"
+    //       className={classes.rating}
+    //       classes={{ h6: classes.h6 }}
+    //     >
+    //       {data.infiniteRatings.speed}
+    //     </Typography>
+    //     <Typography
+    //       variant="h6"
+    //       align="center"
+    //       className={classes.rating}
+    //       classes={{ h6: classes.h6 }}
+    //     >
+    //       {data.infiniteRatings.glide}
+    //     </Typography>
+    //     <Typography
+    //       variant="h6"
+    //       align="center"
+    //       className={classes.rating}
+    //       classes={{ h6: classes.h6 }}
+    //     >
+    //       {data.infiniteRatings.turn}
+    //     </Typography>
+    //     <Typography
+    //       variant="h6"
+    //       align="center"
+    //       className={classes.rating4}
+    //       classes={{ h6: classes.h6 }}
+    //     >
+    //       {data.infiniteRatings.fade}
+    //     </Typography>
+    //   </div>
+    // );
   }
 
   return (

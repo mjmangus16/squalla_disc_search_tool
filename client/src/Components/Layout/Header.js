@@ -22,7 +22,7 @@ const Header = ({ classes, filterToggle, values }) => {
     <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="headline" color="inherit" className={classes.flex}>
-          Squalla Disc Search Tool
+          Squalla Disc Search
         </Typography>
         <Add values={values} />
         <Filter filterToggle={filterToggle} />
