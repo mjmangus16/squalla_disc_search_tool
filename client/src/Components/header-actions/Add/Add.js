@@ -2,33 +2,12 @@ import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser, logoutUser } from "../../../redux/actions/authActions";
-import {
-  Fab,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
-  withStyles
-} from "@material-ui/core";
+import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
-import { red } from "@material-ui/core/colors";
 
 import AddDiscDialog from "./Dialogs/AddDiscDialog";
 import DiscAddedDialog from "./Dialogs/DiscAddedDialog";
-import LoginForm from "./LoginForm";
-
-const styles = theme => ({
-  logout: {
-    color: red[300],
-    borderColor: red[300]
-  },
-  dialog: {
-    [theme.breakpoints.down("sm")]: {
-      padding: 10
-    }
-  }
-});
+import LoginDialog from "./Dialogs/LoginDialog";
 
 class AddDialog extends Component {
   state = {
@@ -69,8 +48,8 @@ class AddDialog extends Component {
   };
 
   render() {
-    const { open, success } = this.state;
-    const { classes, values } = this.props;
+    const { open, success, email, password } = this.state;
+    const { values } = this.props;
     const { isAuthenticated } = this.props.auth;
 
     let dialogContent;
@@ -99,20 +78,15 @@ class AddDialog extends Component {
         }
       } else {
         dialogContent = (
-          <Dialog open={open} onClose={this.handleToggle}>
-            <DialogContent className={classes.dialog}>
-              <DialogTitle>Login</DialogTitle>
-              <DialogContentText>
-                You must be an authorized user to add a disc
-              </DialogContentText>
-              <LoginForm
-                email={this.state.email}
-                password={this.state.password}
-                dataHandler={this.handleChange}
-                loginHandler={this.loginHandler}
-              />
-            </DialogContent>
-          </Dialog>
+          <LoginDialog
+            success={this.handleSuccess}
+            open={open}
+            toggle={this.handleToggle}
+            email={email}
+            password={password}
+            dataHandler={this.handleChange}
+            login={this.loginHandler}
+          />
         );
       }
     }
@@ -140,4 +114,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser, logoutUser }
-)(withStyles(styles)(AddDialog));
+)(AddDialog);
