@@ -4,7 +4,6 @@ import {
   CardContent,
   CardMedia,
   CardHeader,
-  Typography,
   withStyles,
   Button,
   Tooltip
@@ -12,10 +11,9 @@ import {
 import { orange } from "@material-ui/core/colors";
 
 import InfiniteRatings from "./Ratings/InfiniteRatings";
-import manufactureRatings from "./Ratings/ManufactureRatings";
+import ManufactureRatings from "./Ratings/ManufactureRatings";
 
 import getLogo from "./getLogo/getLogo";
-import ManufactureRatings from "./Ratings/ManufactureRatings";
 
 const styles = {
   card: {
@@ -53,37 +51,6 @@ const styles = {
   },
   subHeader: {
     fontSize: ".8em"
-  },
-  h6: {
-    fontSize: ".8em"
-  },
-  ratingsContainer: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "10px auto"
-  },
-  rating: {
-    padding: "5px 3px",
-    borderTop: "1px solid grey",
-    borderBottom: "1px solid grey",
-    borderLeft: "1px solid grey",
-    width: 35
-  },
-  rating4: {
-    padding: "5px 3px",
-    borderTop: "1px solid grey",
-    borderBottom: "1px solid grey",
-    borderLeft: "1px solid grey",
-    borderRight: "1px solid grey",
-    width: 35
-  },
-  unavailable: {
-    padding: "5px 3px",
-    borderTop: "1px solid grey",
-    borderBottom: "1px solid grey",
-    borderLeft: "1px solid grey",
-    borderRight: "1px solid grey",
-    width: 143
   }
 };
 

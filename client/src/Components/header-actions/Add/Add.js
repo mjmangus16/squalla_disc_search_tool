@@ -13,7 +13,9 @@ import {
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { red } from "@material-ui/core/colors";
-import AddForm from "./AddForm";
+
+import AddDiscDialog from "./Dialogs/AddDiscDialog";
+import DiscAddedDialog from "./Dialogs/DiscAddedDialog";
 import LoginForm from "./LoginForm";
 
 const styles = theme => ({
@@ -77,41 +79,22 @@ class AddDialog extends Component {
       if (isAuthenticated) {
         if (!success) {
           dialogContent = (
-            <Dialog open={open} onClose={this.handleToggle}>
-              <Button
-                size="small"
-                onClick={this.logoutHandler}
-                className={classes.logout}
-              >
-                Logout
-              </Button>
-              <DialogContent className={classes.dialog}>
-                <DialogTitle>Add A Disc</DialogTitle>
-                <DialogContentText>
-                  Please fill out the form below
-                </DialogContentText>
-                <AddForm success={this.handleSuccess} values={values} />
-              </DialogContent>
-            </Dialog>
+            <AddDiscDialog
+              logout={this.logoutHandler}
+              success={this.handleSuccess}
+              values={values}
+              open={open}
+              toggle={this.handleToggle}
+            />
           );
         } else {
           dialogContent = (
-            <Dialog open={open} onClose={this.handleToggle}>
-              <Button
-                size="small"
-                onClick={this.logoutHandler}
-                className={classes.logout}
-              >
-                Logout
-              </Button>
-              <DialogContent className={classes.dialog}>
-                <DialogTitle>Success!</DialogTitle>
-                <DialogContentText>
-                  That disc has been added to the database
-                </DialogContentText>
-                <Button onClick={this.handleSuccess}>Add another disc</Button>
-              </DialogContent>
-            </Dialog>
+            <DiscAddedDialog
+              logout={this.logoutHandler}
+              success={this.handleSuccess}
+              open={open}
+              toggle={this.handleToggle}
+            />
           );
         }
       } else {
