@@ -75,7 +75,8 @@ class App extends Component {
     glideSelections: [],
     turnSelections: [],
     fadeSelections: [],
-    values: []
+    values: [],
+    compareCards: []
   };
 
   componentDidMount() {
@@ -228,9 +229,18 @@ class App extends Component {
     });
   };
 
+  onCompareDrop = card => {
+    console.log(card);
+    // this.setState(() => {
+    //   return {
+    //     compareCards: [...this.state.compareCards, card]
+    //   };
+    // });
+  };
+
   render() {
     const { classes } = this.props;
-    const { values, showCount } = this.state;
+    const { values, showCount, compareCards } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
 
@@ -259,13 +269,18 @@ class App extends Component {
           searchByName={this.search_by_name}
           showCount={showCount}
           totalCount={totalCount}
+          compareCards={compareCards}
         />
         <div
           className={
             this.state.filter_open ? classes.filterOpen : classes.filterClosed
           }
         >
-          <Discs toggleRatingsStatus={this.state.toggleRatings} discs={discs} />
+          <Discs
+            toggleRatingsStatus={this.state.toggleRatings}
+            discs={discs}
+            compareDrop={this.onCompareDrop}
+          />
         </div>
       </Fragment>
     );

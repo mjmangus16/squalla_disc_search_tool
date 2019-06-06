@@ -20,7 +20,11 @@ class Discs extends Component {
     if (discs.length > 0) {
       content = discs.map((disc, i) => (
         <Grid item key={`disc-${i}`}>
-          <Disc data={disc} status={toggleRatingsStatus} />
+          <Disc
+            data={disc}
+            status={toggleRatingsStatus}
+            compareDrop={this.props.compareDrop}
+          />
         </Grid>
       ));
     }

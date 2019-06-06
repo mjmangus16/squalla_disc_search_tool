@@ -1,6 +1,7 @@
-import React from "react";
-import { Drawer, withStyles } from "@material-ui/core";
+import React, { Component } from "react";
+import { Drawer, Tabs, Tab, withStyles } from "@material-ui/core";
 import List from "./List/List";
+import Compare from "./Compare/Compare";
 
 const styles = theme => ({
   drawer: {
@@ -13,33 +14,44 @@ const styles = theme => ({
       width: 195,
       maxWidth: 195
     }
+  },
+  tabs: {
+    width: "100%"
   }
 });
 
-const DrawerComponent = ({
-  classes,
-  filterStatus,
-  filterToggle,
-  toggleRatings,
-  toggleRatingsStatus,
-  filterHandlers,
-  filterSelections,
-  submitButton,
-  clearButton,
-  values,
-  searchByName,
-  totalCount,
-  showCount
-}) => {
-  return (
-    <Drawer
-      anchor="right"
-      variant="persistent"
-      open={filterStatus}
-      onClose={filterToggle}
-      className={classes.drawerContainer}
-    >
-      <div tabIndex={0} role="button" className={classes.drawer}>
+class DrawerComponent extends Component {
+  state = {
+    value: 0
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  render() {
+    const {
+      classes,
+      filterStatus,
+      filterToggle,
+      toggleRatings,
+      toggleRatingsStatus,
+      filterHandlers,
+      filterSelections,
+      submitButton,
+      clearButton,
+      values,
+      searchByName,
+      totalCount,
+      showCount,
+      compareCards
+    } = this.props;
+    const { value } = this.state;
+
+    let content;
+
+    if (value === 0) {
+      content = (
         <List
           toggleRatingsStatus={toggleRatingsStatus}
           toggleRatings={toggleRatings}
@@ -52,9 +64,35 @@ const DrawerComponent = ({
           totalCount={totalCount}
           showCount={showCount}
         />
-      </div>
-    </Drawer>
-  );
-};
+      );
+    } else {
+      content = <Compare cards={compareCards} />;
+    }
+
+    return (
+      <Drawer
+        anchor="right"
+        variant="persistent"
+        open={filterStatus}
+        onClose={filterToggle}
+        className={classes.drawerContainer}
+      >
+        <div tabIndex={0} role="button" className={classes.drawer}>
+          <Tabs
+            className={classes.tabs}
+            value={value}
+            onChange={this.handleChange}
+            textColor="secondary"
+            variant="fullWidth"
+          >
+            <Tab label="Filter" />
+            <Tab label="Compare" />
+          </Tabs>
+          {content}
+        </div>
+      </Drawer>
+    );
+  }
+}
 
 export default withStyles(styles)(DrawerComponent);

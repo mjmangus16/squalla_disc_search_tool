@@ -29,7 +29,7 @@ export default withStyles(styles)(({ classes, filterToggle }) => {
       onClick={filterToggle}
     >
       <Filter className={classes.icon} />
-      <span className={classes.text}>Filter</span>
+      <span className={classes.text}>Filter / Compare</span>
     </Fab>
   );
 });

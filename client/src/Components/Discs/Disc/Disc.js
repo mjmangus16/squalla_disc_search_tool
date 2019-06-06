@@ -54,7 +54,7 @@ const styles = {
   }
 };
 
-export default withStyles(styles)(({ classes, data, status }) => {
+export default withStyles(styles)(({ classes, data, status, compareDrop }) => {
   let ratingsContent;
 
   if (status) {
@@ -64,7 +64,13 @@ export default withStyles(styles)(({ classes, data, status }) => {
   }
 
   return (
-    <Card raised className={classes.card} id="disc-card">
+    <Card
+      raised
+      className={classes.card}
+      id="disc-card"
+      draggable
+      onDragEnd={e => compareDrop(data)}
+    >
       <div className={classes.mediaContainer}>
         <CardMedia
           title={data.manufacture}
