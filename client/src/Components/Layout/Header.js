@@ -24,7 +24,7 @@ const Header = ({ classes, filterToggle, values }) => {
         <Typography variant="headline" color="inherit" className={classes.flex}>
           Squalla Disc Search
         </Typography>
-        <Add values={values} />
+        {/* <Add values={values} /> */}
         <Filter filterToggle={filterToggle} />
       </Toolbar>
     </AppBar>

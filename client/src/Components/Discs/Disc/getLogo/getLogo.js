@@ -41,103 +41,125 @@ import discmaniaActive from "./images/discmaniaActive.png";
 import discmaniaEvolution from "./images/discmaniaEvolution.png";
 
 const getLogo = manufacturer => {
-  if (manufacturer === "DiscMania" || manufacturer === "Discmania") {
-    return discMania;
-  } else if (manufacturer === "Discraft") {
-    return discraft;
-  } else if (manufacturer === "Dynamic Discs" || manufacturer === "Dynamic") {
-    return dynamic;
-  } else if (manufacturer === "Innova") {
-    return innova;
-  } else if (manufacturer === "Kastaplast") {
-    return kastaplast;
-  } else if (manufacturer === "Latitude 64") {
-    return latitude;
-  } else if (manufacturer === "Millennium") {
-    return millennium;
-  } else if (manufacturer === "MVP") {
-    return mvp;
-  } else if (manufacturer === "Prodigy") {
-    return prodigy;
-  } else if (manufacturer === "Vibram") {
-    return vibram;
-  } else if (manufacturer === "Westside Discs" || manufacturer === "Westside") {
-    return westside;
-  } else if (manufacturer === "Aerobie") {
-    return aerobie;
-  } else if (manufacturer === "Axiom") {
-    return axiom;
-  } else if (manufacturer === "Ching") {
-    return ching;
-  } else if (
-    manufacturer === "Daredevil Discs" ||
-    manufacturer === "Daredevil"
-  ) {
-    return daredevil;
-  } else if (manufacturer === "DGA") {
-    return dga;
-  } else if (manufacturer === "Element Discs" || manufacturer === "Element") {
-    return element;
-  } else if (manufacturer === "Full Turn") {
-    return fullTurn;
-  } else if (manufacturer === "Gateway") {
-    return gateway;
-  } else if (manufacturer === "Hyzer Bomb") {
-    return hyzerBomb;
-  } else if (manufacturer === "Legacy Discs" || manufacturer === "Legacy") {
-    return legacy;
-  } else if (
-    manufacturer === "Lightning Golf Discs" ||
-    manufacturer === "Lightning"
-  ) {
-    return lightning;
-  } else if (
-    manufacturer === "Nite Ize Innovation" ||
-    manufacturer === "Nite Ize"
-  ) {
-    return niteIze;
-  } else if (manufacturer === "Prodiscus") {
-    return prodiscus;
-  } else if (
-    manufacturer === "Reptilian Disc Golf" ||
-    manufacturer === "Reptilian"
-  ) {
-    return reptilian;
-  } else if (manufacturer === "RPM Discs" || manufacturer === "RPM") {
-    return rpm;
-  } else if (manufacturer === "Salient Discs" || manufacturer === "Salient") {
-    return salient;
-  } else if (manufacturer === "TOBU") {
-    return tobu;
-  } else if (manufacturer === "UB Hand Candy") {
-    return handCandy;
-  } else if (manufacturer === "Viking Discs" || manufacturer === "Viking") {
-    return viking;
-  } else if (manufacturer === "YiKun") {
-    return yikun;
-  } else if (manufacturer === "AquaFlight") {
-    return aquaFlight;
-  } else if (manufacturer === "Infinite Discs" || manufacturer === "Infinite") {
-    return infinite;
-  } else if (manufacturer === "Above Ground Level") {
-    return agl;
-  } else if (manufacturer === "Ozone Discs" || manufacturer === "Ozone") {
-    return ozone;
-  } else if (
-    manufacturer === "Streamline Discs" ||
-    manufacturer === "Streamline"
-  ) {
-    return streamline;
-  } else if (manufacturer === "Storm Disc Golf" || manufacturer === "Storm") {
-    return storm;
-  } else if (manufacturer === "Galaxy Disc Golf" || manufacturer === "Galaxy") {
-    return galaxy;
-  } else if (manufacturer === "Fourth Circle") {
-    return fourthCircle;
-  } else if (manufacturer === "Discmania Active") {
-    return discmaniaActive;
-  } else if (manufacturer === "Discmania Evolution") {
-    return discmaniaEvolution;
+  switch (manufacturer) {
+    case "DiscMania":
+      return discMania;
+    case "Discmania":
+      return discMania;
+    case "Discraft":
+      return discraft;
+    case "Dynamic Discs":
+      return dynamic;
+    case "Dynamic":
+      return dynamic;
+    case "Innova":
+      return innova;
+    case "Kastaplast":
+      return kastaplast;
+    case "Latitude 64":
+      return latitude;
+    case "Millennium":
+      return millennium;
+    case "MVP":
+      return mvp;
+    case "Prodigy":
+      return prodigy;
+    case "Vibram":
+      return vibram;
+    case "Westside Discs":
+      return westside;
+    case "Westside":
+      return westside;
+    case "Aerobie":
+      return aerobie;
+    case "Axiom":
+      return axiom;
+    case "Ching":
+      return ching;
+    case "Daredevil Discs":
+      return daredevil;
+    case "Daredevil":
+      return daredevil;
+    case "DGA":
+      return dga;
+    case "Element Discs":
+      return element;
+    case "Element":
+      return element;
+    case "Full Turn":
+      return fullTurn;
+    case "Gateway":
+      return gateway;
+    case "Hyzer Bomb":
+      return hyzerBomb;
+    case "Legacy Discs":
+      return legacy;
+    case "Legacy":
+      return legacy;
+    case "Lightning Golf Discs":
+      return lightning;
+    case "Lightning":
+      return lightning;
+    case "Nite Ize Innovation":
+      return niteIze;
+    case "Nite Ize":
+      return niteIze;
+    case "Prodiscus":
+      return prodiscus;
+    case "Reptilian Disc Golf":
+      return reptilian;
+    case "Reptilian":
+      return reptilian;
+    case "RPM Discs":
+      return rpm;
+    case "RPM":
+      return rpm;
+    case "Salient Discs":
+      return salient;
+    case "Salient":
+      return salient;
+    case "TOBU":
+      return tobu;
+    case "UB Hand Candy":
+      return handCandy;
+    case "Viking Discs":
+      return viking;
+    case "Viking":
+      return viking;
+    case "YiKun":
+      return yikun;
+    case "AquaFlight":
+      return aquaFlight;
+    case "Infinite Discs":
+      return infinite;
+    case "Infinite":
+      return infinite;
+    case "Above Ground Level":
+      return agl;
+    case "Ozone Discs":
+      return ozone;
+    case "Ozone":
+      return ozone;
+    case "Streamline Discs":
+      return streamline;
+    case "Streamline":
+      return streamline;
+    case "Storm Disc Golf":
+      return storm;
+    case "Storm":
+      return storm;
+    case "Galaxy Disc Golf":
+      return galaxy;
+    case "Galaxy":
+      return galaxy;
+    case "Fourth Circle":
+      return fourthCircle;
+    case "Discmania Active":
+      return discmaniaActive;
+    case "Discmania Evolution":
+      return discmaniaEvolution;
+    default:
+      return null;
   }
 };
 
