@@ -44,7 +44,8 @@ class DrawerComponent extends Component {
       searchByName,
       totalCount,
       showCount,
-      compareCards
+      compareDiscs,
+      removeCompare
     } = this.props;
     const { value } = this.state;
 
@@ -66,7 +67,7 @@ class DrawerComponent extends Component {
         />
       );
     } else {
-      content = <Compare cards={compareCards} />;
+      content = <Compare discs={compareDiscs} removeCompare={removeCompare} />;
     }
 
     return (

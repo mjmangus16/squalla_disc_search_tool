@@ -13,7 +13,13 @@ const styles = theme => ({
 
 class Discs extends Component {
   render() {
-    const { classes, toggleRatingsStatus, discs } = this.props;
+    const {
+      classes,
+      toggleRatingsStatus,
+      discs,
+      addCompare,
+      removeCompare
+    } = this.props;
 
     let content;
 
@@ -23,7 +29,8 @@ class Discs extends Component {
           <Disc
             data={disc}
             status={toggleRatingsStatus}
-            compareDrop={this.props.compareDrop}
+            addCompare={addCompare}
+            compareStatus={true}
           />
         </Grid>
       ));

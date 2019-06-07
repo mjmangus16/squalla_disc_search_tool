@@ -76,7 +76,7 @@ class App extends Component {
     turnSelections: [],
     fadeSelections: [],
     values: [],
-    compareCards: []
+    compareDiscs: []
   };
 
   componentDidMount() {
@@ -229,18 +229,33 @@ class App extends Component {
     });
   };
 
-  onCompareDrop = card => {
-    console.log(card);
-    // this.setState(() => {
-    //   return {
-    //     compareCards: [...this.state.compareCards, card]
-    //   };
-    // });
+  addCompare = disc => {
+    let alreadyAdded = false;
+    this.state.compareDiscs.forEach(compareDisc => {
+      if (compareDisc._id === disc._id) {
+        alreadyAdded = true;
+      }
+    });
+    if (alreadyAdded === false) {
+      this.setState(() => {
+        return {
+          compareDiscs: [...this.state.compareDiscs, disc]
+        };
+      });
+    }
+  };
+
+  removeCompare = disc => {
+    this.setState({
+      compareDiscs: [...this.state.compareDiscs].filter(
+        item => item._id !== disc._id
+      )
+    });
   };
 
   render() {
     const { classes } = this.props;
-    const { values, showCount, compareCards } = this.state;
+    const { values, showCount, compareDiscs } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
 
@@ -269,7 +284,8 @@ class App extends Component {
           searchByName={this.search_by_name}
           showCount={showCount}
           totalCount={totalCount}
-          compareCards={compareCards}
+          compareDiscs={compareDiscs}
+          removeCompare={this.removeCompare}
         />
         <div
           className={
@@ -279,7 +295,7 @@ class App extends Component {
           <Discs
             toggleRatingsStatus={this.state.toggleRatings}
             discs={discs}
-            compareDrop={this.onCompareDrop}
+            addCompare={this.addCompare}
           />
         </div>
       </Fragment>
