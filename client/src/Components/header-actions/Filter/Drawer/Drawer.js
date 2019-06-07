@@ -21,13 +21,18 @@ const styles = theme => ({
   badge: {
     position: "absolute",
     color: "rgba(255, 255, 255, 0.7)",
-    [theme.breakpoints.up("xs")]: {
+
+    [theme.breakpoints.between("xs", "sm")]: {
+      top: 80,
+      right: 10
+    },
+    [theme.breakpoints.up("sm", "md")]: {
       top: 80,
       right: 35
     },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.up("md")]: {
       top: 80,
-      right: 10
+      right: 20
     }
   }
 });
@@ -97,7 +102,9 @@ class DrawerComponent extends Component {
         className={classes.drawerContainer}
       >
         <div tabIndex={0} role="button" className={classes.drawer}>
-          <Badge badgeContent={compareDiscs.length} className={classes.badge} />
+          <Badge badgeContent={compareDiscs.length} className={classes.badge}>
+            {""}
+          </Badge>
           <Tabs
             className={classes.tabs}
             value={value}
