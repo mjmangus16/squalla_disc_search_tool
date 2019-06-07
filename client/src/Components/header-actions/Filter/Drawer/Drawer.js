@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Drawer, Tabs, Tab, withStyles } from "@material-ui/core";
+import { Drawer, Tabs, Tab, withStyles, Badge } from "@material-ui/core";
 import List from "./List/List";
 import Compare from "./Compare/Compare";
 
@@ -17,6 +17,18 @@ const styles = theme => ({
   },
   tabs: {
     width: "100%"
+  },
+  badge: {
+    position: "absolute",
+    color: "rgba(255, 255, 255, 0.7)",
+    [theme.breakpoints.up("xs")]: {
+      top: 80,
+      right: 35
+    },
+    [theme.breakpoints.down("xs")]: {
+      top: 80,
+      right: 10
+    }
   }
 });
 
@@ -67,7 +79,13 @@ class DrawerComponent extends Component {
         />
       );
     } else {
-      content = <Compare discs={compareDiscs} removeCompare={removeCompare} />;
+      content = (
+        <Compare
+          discs={compareDiscs}
+          removeCompare={removeCompare}
+          toggleRatingsStatus={toggleRatingsStatus}
+        />
+      );
     }
 
     return (
@@ -79,6 +97,7 @@ class DrawerComponent extends Component {
         className={classes.drawerContainer}
       >
         <div tabIndex={0} role="button" className={classes.drawer}>
+          <Badge badgeContent={compareDiscs.length} className={classes.badge} />
           <Tabs
             className={classes.tabs}
             value={value}

@@ -6,14 +6,19 @@ import {
   CardHeader,
   withStyles,
   Button,
-  Tooltip
+  Tooltip,
+  IconButton
 } from "@material-ui/core";
-import { orange } from "@material-ui/core/colors";
+import { orange, red } from "@material-ui/core/colors";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import InfiniteRatings from "./Ratings/InfiniteRatings";
 import ManufactureRatings from "./Ratings/ManufactureRatings";
 
 import getLogo from "./getLogo/getLogo";
+
+const removeRed = red[300];
 
 const styles = {
   card: {
@@ -35,6 +40,20 @@ const styles = {
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat"
   },
+  iconAdd: {
+    padding: 0,
+    float: "right",
+    marginRight: 18,
+    marginTop: 6,
+    border: `1px solid #66bb6a`
+  },
+  iconRemove: {
+    padding: 0,
+    float: "right",
+    marginRight: 18,
+    marginTop: 6,
+    border: `1px solid ${removeRed}`
+  },
   content: {
     height: 150,
     width: 175,
@@ -53,6 +72,12 @@ const styles = {
   }
 };
 
+const styledIcon = withStyles({
+  root: {
+    color: "red"
+  }
+});
+
 export default withStyles(styles)(
   ({ classes, data, status, addCompare, removeCompare, compareStatus }) => {
     let ratingsContent;
@@ -69,12 +94,6 @@ export default withStyles(styles)(
         className={classes.card}
         style={addCompare ? { margin: "16px" } : { margin: "16px auto" }}
         id="disc-card"
-        onDoubleClickCapture={
-          compareStatus ? () => addCompare(data) : () => removeCompare(data)
-        }
-        onTouchMoveCapture={
-          compareStatus ? () => addCompare(data) : () => removeCompare(data)
-        }
       >
         <div className={classes.mediaContainer}>
           <CardMedia
@@ -105,6 +124,24 @@ export default withStyles(styles)(
           >
             Learn More
           </Button>
+          {compareStatus ? (
+            <IconButton
+              size="small"
+              color="secondary"
+              style={styles.iconAdd}
+              onClick={() => addCompare(data)}
+            >
+              <AddIcon style={{ fontSize: 15 }} />
+            </IconButton>
+          ) : (
+            <IconButton
+              size="small"
+              style={styles.iconRemove}
+              onClick={() => removeCompare(data)}
+            >
+              <RemoveIcon style={{ color: removeRed, fontSize: 15 }} />
+            </IconButton>
+          )}
         </CardContent>
       </Card>
     );
