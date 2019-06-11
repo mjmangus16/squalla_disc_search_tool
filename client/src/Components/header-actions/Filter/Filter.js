@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Fab } from "@material-ui/core";
 import { Filter } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
@@ -20,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(({ classes, filterToggle }) => {
+const FilterComponent = ({ classes, filterToggle }) => {
   return (
     <Fab
       variant="extended"
@@ -32,4 +33,10 @@ export default withStyles(styles)(({ classes, filterToggle }) => {
       <span className={classes.text}>Filter / Compare</span>
     </Fab>
   );
-});
+};
+
+FilterComponent.propTypes = {
+  filterToggle: PropTypes.func.isRequired
+};
+
+export default withStyles(styles)(FilterComponent);

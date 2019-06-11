@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import AddForm from "../AddForm";
 import { red } from "@material-ui/core/colors";
 
@@ -36,6 +37,13 @@ const AddDiscDialog = ({ classes, logout, success, values, open, toggle }) => {
       </DialogContent>
     </Dialog>
   );
+};
+
+AddDiscDialog.propTypes = {
+  logout: PropTypes.func.isRequired,
+  success: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(AddDiscDialog);

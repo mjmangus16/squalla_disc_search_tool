@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import {
   TextField,
@@ -171,7 +172,7 @@ class Form extends Component {
   render() {
     const { classes, values } = this.props;
     let collectedValues = {};
-
+    console.log(values);
     if (values.length > 0) {
       values.forEach(value => {
         collectedValues[value.name] = value.data;

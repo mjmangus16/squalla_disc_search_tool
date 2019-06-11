@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -29,6 +30,11 @@ const Header = ({ classes, filterToggle, values }) => {
       </Toolbar>
     </AppBar>
   );
+};
+
+Header.propTypes = {
+  filterToggle: PropTypes.func.isRequired,
+  values: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default withStyles(styles)(Header);

@@ -104,7 +104,8 @@ class AddDialog extends Component {
 
 AddDialog.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  values: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
