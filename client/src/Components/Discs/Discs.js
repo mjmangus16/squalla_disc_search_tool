@@ -13,13 +13,7 @@ const styles = theme => ({
 
 class Discs extends Component {
   render() {
-    const {
-      classes,
-      toggleRatingsStatus,
-      discs,
-      addCompare,
-      removeCompare
-    } = this.props;
+    const { classes, toggleRatingsStatus, discs, addCompare } = this.props;
 
     let content;
 

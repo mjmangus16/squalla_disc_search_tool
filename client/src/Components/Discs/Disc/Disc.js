@@ -72,12 +72,6 @@ const styles = {
   }
 };
 
-const styledIcon = withStyles({
-  root: {
-    color: "red"
-  }
-});
-
 export default withStyles(styles)(
   ({ classes, data, status, addCompare, removeCompare, compareStatus }) => {
     let ratingsContent;
