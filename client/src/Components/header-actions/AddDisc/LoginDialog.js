@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../LoginForm";
+import LoginForm from "./LoginForm";
 import { red } from "@material-ui/core/colors";
 
 import {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid, withStyles } from "@material-ui/core";
 
-import Disc from "./Disc/Disc";
+import Disc from "./Disc";
 
 const styles = theme => ({
   container: {

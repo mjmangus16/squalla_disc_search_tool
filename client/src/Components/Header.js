@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import { Add, Filter } from "../header-actions/index";
+import { AddButton, DrawerButton } from "./header-actions/index";
 
 const styles = theme => ({
   flex: {
@@ -25,8 +25,8 @@ const Header = ({ classes, filterToggle, values }) => {
         <Typography variant="headline" color="inherit" className={classes.flex}>
           Squalla Disc Search
         </Typography>
-        <Add values={values} />
-        <Filter filterToggle={filterToggle} />
+        <AddButton values={values} />
+        <DrawerButton filterToggle={filterToggle} />
       </Toolbar>
     </AppBar>
   );

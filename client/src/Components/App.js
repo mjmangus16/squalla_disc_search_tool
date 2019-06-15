@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { CssBaseline, withStyles } from "@material-ui/core";
 import axios from "axios";
 
-import Header from "./Layout/Header";
-import Drawer from "./header-actions/Filter/Drawer/Drawer";
+import Header from "./Header";
+import Drawer from "./header-actions/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
 const styles = theme => ({

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AddForm from "../AddForm";
+import AddForm from "./AddForm";
 import { red } from "@material-ui/core/colors";
 
 import {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Drawer, Tabs, Tab, withStyles, Badge } from "@material-ui/core";
-import List from "./List/List";
+import FilterList from "./Filter/FilterList";
 import Compare from "./Compare/Compare";
 
 const styles = theme => ({
@@ -70,7 +70,7 @@ class DrawerComponent extends Component {
 
     if (value === 0) {
       content = (
-        <List
+        <FilterList
           toggleRatingsStatus={toggleRatingsStatus}
           toggleRatings={toggleRatings}
           handlers={filterHandlers}

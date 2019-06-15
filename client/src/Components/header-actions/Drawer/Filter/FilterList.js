@@ -13,8 +13,8 @@ import {
   MenuItem,
   Select
 } from "@material-ui/core";
-import SelectInputText from "./Select/SelectInputText";
-import SelectInputNumber from "./Select/SelectInputNumber";
+import SelectInputText from "./SelectInputText";
+import SelectInputNumber from "./SelectInputNumber";
 
 const styles = theme => ({
   textField: {

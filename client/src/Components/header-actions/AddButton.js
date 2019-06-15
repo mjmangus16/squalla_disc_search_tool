@@ -2,14 +2,14 @@ import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 
 import axios from "axios";
-import setAuthToken from "../../../utils/setAuthToken";
+import setAuthToken from "../../utils/setAuthToken";
 
 import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
-import AddDiscDialog from "./Dialogs/AddDiscDialog";
-import DiscAddedDialog from "./Dialogs/DiscAddedDialog";
-import LoginDialog from "./Dialogs/LoginDialog";
+import AddDiscDialog from "./AddDisc/AddDiscDialog";
+import DiscAddedDialog from "./AddDisc/DiscAddedDialog";
+import LoginDialog from "./AddDisc/LoginDialog";
 
 class AddDialog extends Component {
   state = {

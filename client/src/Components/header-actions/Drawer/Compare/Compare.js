@@ -1,6 +1,6 @@
 import React from "react";
 
-import Disc from "../../../../Discs/Disc/Disc";
+import Disc from "../../../Discs/Disc";
 import CompareInfo from "./CompareInfo";
 
 const Compare = ({ discs, removeCompare, toggleRatingsStatus }) => {
