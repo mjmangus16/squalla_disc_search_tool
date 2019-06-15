@@ -7,7 +7,11 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   button: {
     marginRight: 5,
-    marginLeft: 25
+    marginLeft: 25,
+    display: "none",
+    [theme.breakpoints.down("xs")]: {
+      display: "inline-flex"
+    }
   },
   icon: {
     marginRight: 5,
@@ -21,13 +25,13 @@ const styles = theme => ({
   }
 });
 
-const FilterComponent = ({ classes, filterToggle }) => {
+const FilterComponent = ({ classes, drawerToggle }) => {
   return (
     <Fab
       variant="extended"
       size="small"
       className={classes.button}
-      onClick={filterToggle}
+      onClick={drawerToggle}
     >
       <Filter className={classes.icon} />
       <span className={classes.text}>Filter / Compare</span>
@@ -36,7 +40,7 @@ const FilterComponent = ({ classes, filterToggle }) => {
 };
 
 FilterComponent.propTypes = {
-  filterToggle: PropTypes.func.isRequired
+  drawerToggle: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(FilterComponent);

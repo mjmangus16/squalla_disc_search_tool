@@ -6,8 +6,11 @@ import Header from "./Header";
 import Drawer from "./header-actions/Drawer/Drawer";
 import Discs from "./Discs/Discs";
 
+import filterRating from "../utils/filterRating";
+import shuffledArray from "../utils/shuffledArray";
+
 const styles = theme => ({
-  filterOpen: {
+  drawerOpen: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -20,7 +23,7 @@ const styles = theme => ({
       marginRight: "auto"
     }
   },
-  filterClosed: {
+  drawerClosed: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -28,45 +31,13 @@ const styles = theme => ({
   }
 });
 
-const filterRating = (rating, num) => {
-  if (num) {
-    for (let i = 0; i < rating.length; i++) {
-      let low = parseFloat(rating[i]) - 0.5;
-      let high = parseFloat(rating[i]) + 0.5;
-
-      if (parseFloat(num) >= low && parseFloat(num) < high) {
-        return true;
-      }
-    }
-  } else {
-    return false;
-  }
-};
-
-const shuffledArray = array => {
-  let currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-};
-
 class App extends Component {
   state = {
     staticDiscs: [],
     discs: [],
     showCount: 25,
     add_disc_open: false,
-    filter_open: true,
+    drawer_open: true,
     toggleRatings: false,
     manufactureSelections: [],
     discTypeSelections: [],
@@ -104,8 +75,8 @@ class App extends Component {
     });
   };
 
-  filter_toggle = () => {
-    this.setState({ filter_open: !this.state.filter_open });
+  drawer_toggle = () => {
+    this.setState({ drawer_open: !this.state.drawer_open });
   };
 
   filter_handlers = {
@@ -255,28 +226,41 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-    const { values, showCount, compareDiscs } = this.state;
+    const {
+      values,
+      showCount,
+      compareDiscs,
+      drawer_open,
+      toggleRatings,
+      manufactureSelections,
+      discTypeSelections,
+      stabilitySelections,
+      speedSelections,
+      glideSelections,
+      turnSelections,
+      fadeSelections
+    } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
 
     return (
       <Fragment>
         <CssBaseline />
-        <Header filterToggle={this.filter_toggle} values={values} />
+        <Header drawerToggle={this.drawer_toggle} values={values} />
         <Drawer
           filterToggle={this.filter_toggle}
-          filterStatus={this.state.filter_open}
+          filterStatus={drawer_open}
           toggleRatings={this.toggle_ratings}
-          toggleRatingsStatus={this.state.toggleRatings}
+          toggleRatingsStatus={toggleRatings}
           filterHandlers={this.filter_handlers}
           filterSelections={{
-            manufacture: this.state.manufactureSelections,
-            discType: this.state.discTypeSelections,
-            stability: this.state.stabilitySelections,
-            speed: this.state.speedSelections,
-            glide: this.state.glideSelections,
-            turn: this.state.turnSelections,
-            fade: this.state.fadeSelections
+            manufacture: manufactureSelections,
+            discType: discTypeSelections,
+            stability: stabilitySelections,
+            speed: speedSelections,
+            glide: glideSelections,
+            turn: turnSelections,
+            fade: fadeSelections
           }}
           submitButton={this.submit_button}
           clearButton={this.clear_button}
@@ -289,7 +273,7 @@ class App extends Component {
         />
         <div
           className={
-            this.state.filter_open ? classes.filterOpen : classes.filterClosed
+            this.state.drawer_open ? classes.drawerOpen : classes.drawerClosed
           }
         >
           <Discs

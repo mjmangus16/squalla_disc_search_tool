@@ -72,72 +72,79 @@ const styles = {
   }
 };
 
-export default withStyles(styles)(
-  ({ classes, data, status, addCompare, removeCompare, compareStatus }) => {
-    let ratingsContent;
+const Disc = ({
+  classes,
+  data,
+  status,
+  addCompare,
+  removeCompare,
+  compareStatus
+}) => {
+  let ratingsContent;
 
-    if (status) {
-      ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
-    } else {
-      ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
-    }
-
-    return (
-      <Card
-        raised
-        className={classes.card}
-        style={addCompare ? { margin: "16px" } : { margin: "16px auto" }}
-        id="disc-card"
-      >
-        <div className={classes.mediaContainer}>
-          <CardMedia
-            title={data.manufacture}
-            image={getLogo(data.manufacture)}
-            className={classes.media}
-          />
-        </div>
-        <CardContent className={classes.content}>
-          <CardHeader
-            title={data.discName}
-            subheader={data.discType}
-            className={classes.header}
-            classes={{ title: classes.title, subheader: classes.subHeader }}
-          />
-          <Tooltip
-            disableFocusListener
-            placement="bottom-end"
-            title={data.stability}
-          >
-            {ratingsContent}
-          </Tooltip>
-          <Button
-            size="small"
-            href={data.link}
-            target="_blank"
-            style={{ marginLeft: 10, color: orange[400] }}
-          >
-            Learn More
-          </Button>
-          {compareStatus ? (
-            <IconButton
-              size="small"
-              color="secondary"
-              style={styles.iconAdd}
-              onClick={() => addCompare(data)}
-            >
-              <AddIcon style={{ fontSize: 15 }} />
-            </IconButton>
-          ) : (
-            <IconButton
-              size="small"
-              style={styles.iconRemove}
-              onClick={() => removeCompare(data)}
-            >
-              <RemoveIcon style={{ color: removeRed, fontSize: 15 }} />
-            </IconButton>
-          )}
-        </CardContent>
-      </Card>
-    );
+  if (status) {
+    ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
+  } else {
+    ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
   }
-);
+
+  return (
+    <Card
+      raised
+      className={classes.card}
+      style={addCompare ? { margin: "16px" } : { margin: "16px auto" }}
+      id="disc-card"
+    >
+      <div className={classes.mediaContainer}>
+        <CardMedia
+          title={data.manufacture}
+          image={getLogo(data.manufacture)}
+          className={classes.media}
+        />
+      </div>
+      <CardContent className={classes.content}>
+        <CardHeader
+          title={data.discName}
+          subheader={data.discType}
+          className={classes.header}
+          classes={{ title: classes.title, subheader: classes.subHeader }}
+        />
+        <Tooltip
+          disableFocusListener
+          placement="bottom-end"
+          title={data.stability}
+        >
+          {ratingsContent}
+        </Tooltip>
+        <Button
+          size="small"
+          href={data.link}
+          target="_blank"
+          style={{ marginLeft: 10, color: orange[400] }}
+        >
+          Learn More
+        </Button>
+        {compareStatus ? (
+          <IconButton
+            size="small"
+            color="secondary"
+            style={styles.iconAdd}
+            onClick={() => addCompare(data)}
+          >
+            <AddIcon style={{ fontSize: 15 }} />
+          </IconButton>
+        ) : (
+          <IconButton
+            size="small"
+            style={styles.iconRemove}
+            onClick={() => removeCompare(data)}
+          >
+            <RemoveIcon style={{ color: removeRed, fontSize: 15 }} />
+          </IconButton>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default withStyles(styles)(Disc);

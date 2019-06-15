@@ -18,22 +18,25 @@ const styles = theme => ({
   }
 });
 
-const Header = ({ classes, filterToggle, values }) => {
+const Header = ({ classes, drawerToggle, values }) => {
   return (
     <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="headline" color="inherit" className={classes.flex}>
           Squalla Disc Search
         </Typography>
-        <AddButton values={values} />
-        <DrawerButton filterToggle={filterToggle} />
+        {/* <AddButton values={values} /> */}
+        <DrawerButton
+          drawerToggle={drawerToggle}
+          className={classes.drawerButton}
+        />
       </Toolbar>
     </AppBar>
   );
 };
 
 Header.propTypes = {
-  filterToggle: PropTypes.func.isRequired,
+  drawerToggle: PropTypes.func.isRequired,
   values: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
