@@ -42,10 +42,6 @@ class DrawerComponent extends Component {
     value: 0
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
   render() {
     const {
       classes,
@@ -62,13 +58,14 @@ class DrawerComponent extends Component {
       totalCount,
       showCount,
       compareDiscs,
-      removeCompare
+      removeCompare,
+      tabValue,
+      handleTabChange
     } = this.props;
-    const { value } = this.state;
 
     let content;
 
-    if (value === 0) {
+    if (tabValue === 0) {
       content = (
         <FilterList
           toggleRatingsStatus={toggleRatingsStatus}
@@ -107,8 +104,8 @@ class DrawerComponent extends Component {
           </Badge>
           <Tabs
             className={classes.tabs}
-            value={value}
-            onChange={this.handleChange}
+            value={tabValue}
+            onChange={handleTabChange}
             textColor="secondary"
             variant="fullWidth"
           >

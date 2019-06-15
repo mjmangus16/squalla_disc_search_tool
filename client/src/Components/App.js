@@ -47,7 +47,8 @@ class App extends Component {
     turnSelections: [],
     fadeSelections: [],
     values: [],
-    compareDiscs: []
+    compareDiscs: [],
+    tabValue: 0
   };
 
   componentDidMount() {
@@ -64,6 +65,10 @@ class App extends Component {
       });
     });
   }
+
+  handleTabChange = (event, value) => {
+    this.setState({ tabValue: value });
+  };
 
   toggle_ratings = () => {
     this.setState({ toggleRatings: !this.state.toggleRatings });
@@ -208,11 +213,20 @@ class App extends Component {
       }
     });
     if (alreadyAdded === false) {
-      this.setState(() => {
-        return {
-          compareDiscs: [...this.state.compareDiscs, disc]
-        };
-      });
+      if (this.state.compareDiscs.length === 0) {
+        this.setState(() => {
+          return {
+            compareDiscs: [...this.state.compareDiscs, disc],
+            tabValue: 1
+          };
+        });
+      } else {
+        this.setState(() => {
+          return {
+            compareDiscs: [...this.state.compareDiscs, disc]
+          };
+        });
+      }
     }
   };
 
@@ -238,7 +252,8 @@ class App extends Component {
       speedSelections,
       glideSelections,
       turnSelections,
-      fadeSelections
+      fadeSelections,
+      tabValue
     } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
@@ -270,6 +285,8 @@ class App extends Component {
           totalCount={totalCount}
           compareDiscs={compareDiscs}
           removeCompare={this.removeCompare}
+          tabValue={tabValue}
+          handleTabChange={this.handleTabChange}
         />
         <div
           className={
