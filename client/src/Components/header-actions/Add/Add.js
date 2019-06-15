@@ -1,7 +1,9 @@
 import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { loginUser, logoutUser } from "../../../redux/actions/authActions";
+
+import axios from "axios";
+import setAuthToken from "../../../utils/setAuthToken";
+
 import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
@@ -17,6 +19,10 @@ class AddDialog extends Component {
     password: "",
     auth: false
   };
+
+  componentDidMount() {
+    this.setState({ auth: localStorage.getItem("Auth") });
+  }
 
   handleToggle = () => {
     this.setState({
@@ -40,55 +46,68 @@ class AddDialog extends Component {
       password: this.state.password
     };
 
-    this.props.loginUser(userData);
+    axios
+      .post("/api/users/login", userData)
+      .then(res => {
+        // Save to local storage
+        const { token } = res.data;
+        // Set token to local storage
+        localStorage.setItem("jwtToken", token);
+        // Set token to Auth header
+        setAuthToken(token);
+        localStorage.setItem("Auth", true);
+        this.setState({ auth: true });
+      })
+      .catch(err => console.log(err));
   };
 
   logoutHandler = () => {
-    this.props.logoutUser();
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("Auth");
+    setAuthToken(false);
+    this.setState({ auth: false });
   };
 
   render() {
     const { open, success, email, password } = this.state;
     const { values } = this.props;
-    const { isAuthenticated } = this.props.auth;
+    const isAuthenticated = this.state.auth;
 
     let dialogContent;
 
-    if (Object.keys(this.props.auth).length > 0) {
-      if (isAuthenticated) {
-        if (!success) {
-          dialogContent = (
-            <AddDiscDialog
-              logout={this.logoutHandler}
-              success={this.handleSuccess}
-              values={values}
-              open={open}
-              toggle={this.handleToggle}
-            />
-          );
-        } else {
-          dialogContent = (
-            <DiscAddedDialog
-              logout={this.logoutHandler}
-              success={this.handleSuccess}
-              open={open}
-              toggle={this.handleToggle}
-            />
-          );
-        }
+    if (isAuthenticated) {
+      if (!success) {
+        dialogContent = (
+          <AddDiscDialog
+            logout={this.logoutHandler}
+            success={this.handleSuccess}
+            values={values}
+            open={open}
+            toggle={this.handleToggle}
+          />
+        );
       } else {
         dialogContent = (
-          <LoginDialog
+          <DiscAddedDialog
+            logout={this.logoutHandler}
             success={this.handleSuccess}
             open={open}
             toggle={this.handleToggle}
-            email={email}
-            password={password}
-            dataHandler={this.handleChange}
-            login={this.loginHandler}
           />
         );
       }
+    } else {
+      dialogContent = (
+        <LoginDialog
+          success={this.handleSuccess}
+          open={open}
+          toggle={this.handleToggle}
+          email={email}
+          password={password}
+          dataHandler={this.handleChange}
+          login={this.loginHandler}
+        />
+      );
     }
 
     return (
@@ -103,16 +122,7 @@ class AddDialog extends Component {
 }
 
 AddDialog.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   values: PropTypes.array.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { loginUser, logoutUser }
-)(AddDialog);
+export default AddDialog;
