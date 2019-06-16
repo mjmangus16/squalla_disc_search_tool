@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Drawer, Tabs, Tab, withStyles, Badge } from "@material-ui/core";
 import FilterList from "./Filter/FilterList";
 import Compare from "./Compare/Compare";
+import { orange } from "@material-ui/core/colors";
 
 const styles = theme => ({
   drawer: {
@@ -20,8 +21,7 @@ const styles = theme => ({
   },
   badge: {
     position: "absolute",
-    color: "rgba(255, 255, 255, 0.7)",
-
+    color: orange[400],
     [theme.breakpoints.between("xs", "sm")]: {
       top: 80,
       right: 10
@@ -34,6 +34,9 @@ const styles = theme => ({
       top: 80,
       right: 20
     }
+  },
+  orange: {
+    backgroundColor: orange[400]
   }
 });
 
@@ -99,7 +102,12 @@ class DrawerComponent extends Component {
         className={classes.drawerContainer}
       >
         <div tabIndex={0} role="button" className={classes.drawer}>
-          <Badge badgeContent={compareDiscs.length} className={classes.badge}>
+          <Badge
+            badgeContent={compareDiscs.length}
+            className={classes.badge}
+            color="secondary"
+            classes={{ colorSecondary: classes.orange }}
+          >
             {""}
           </Badge>
           <Tabs
