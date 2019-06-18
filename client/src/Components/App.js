@@ -296,6 +296,7 @@ class App extends Component {
           <Discs
             toggleRatingsStatus={this.state.toggleRatings}
             discs={discs}
+            compareDiscs={compareDiscs}
             addCompare={this.addCompare}
           />
         </div>

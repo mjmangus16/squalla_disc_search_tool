@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Card,
   CardContent,
@@ -78,7 +78,8 @@ const Disc = ({
   status,
   addCompare,
   removeCompare,
-  compareStatus
+  compareStatus,
+  compareDiscs
 }) => {
   let ratingsContent;
 
