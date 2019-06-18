@@ -25,7 +25,7 @@ const Header = ({ classes, drawerToggle, values }) => {
         <Typography variant="headline" color="inherit" className={classes.flex}>
           Squalla Disc Search
         </Typography>
-        {/* <AddButton values={values} /> */}
+        <AddButton values={values} />
         <DrawerButton
           drawerToggle={drawerToggle}
           className={classes.drawerButton}

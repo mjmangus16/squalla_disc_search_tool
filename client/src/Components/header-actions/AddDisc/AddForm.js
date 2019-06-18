@@ -89,61 +89,35 @@ class Form extends Component {
   };
 
   submitDisc = () => {
-    const newDisc = {
+    let newDisc = {
       discName: this.state.name,
       manufacture: this.state.manufacture,
       discType: this.state.type,
       stability: this.state.stability,
-
       iSpeed: this.state.iSpeed,
       iGlide: this.state.iGlide,
       iTurn: this.state.iTurn,
       iFade: this.state.iFade,
-
       link: this.state.link
     };
 
-    if (this.state.mSpeed !== "") {
-      newDisc.mSpeed = this.state.mSpeed;
-      newDisc.mGlide = this.state.mGlide;
-      newDisc.mTurn = this.state.mTurn;
-      newDisc.mFade = this.state.mFade;
-    }
+    const mRatings = {
+      mSpeed: this.state.mSpeed,
+      mGlide: this.state.mGlide,
+      mTurn: this.state.mTurn,
+      mFade: this.state.mFade
+    };
 
-    if (
-      newDisc.discname !== "" &&
-      newDisc.manufacture !== "" &&
-      newDisc.discType !== "" &&
-      newDisc.stability !== "" &&
-      newDisc.iSpeed !== "" &&
-      newDisc.iGlide !== "" &&
-      newDisc.iTurn !== "" &&
-      newDisc.iFade !== "" &&
-      newDisc.link !== ""
-    ) {
-      if (
-        newDisc.mSpeed !== "" ||
-        newDisc.mGlide !== "" ||
-        newDisc.mTurn !== "" ||
-        newDisc.mFade !== ""
-      ) {
-        if (
-          newDisc.mSpeed !== "" &&
-          newDisc.mGlide !== "" &&
-          newDisc.mTurn !== "" &&
-          newDisc.mFade !== ""
-        ) {
-          axios.post("/api/discs/add", newDisc);
-          this.props.success();
-          this.setState({ snackbar: false });
-        } else {
-          this.setState({ snackbar: true });
-        }
-      } else {
-        axios.post("/api/discs/add", newDisc);
-        this.props.success();
-        this.setState({ snackbar: false });
-      }
+    const mRatingsStatus = Object.values(mRatings).every(value => value !== "");
+
+    mRatingsStatus && (newDisc = Object.assign(newDisc, mRatings));
+
+    const newDiscStatus = Object.values(newDisc).every(value => value !== "");
+
+    if (newDiscStatus) {
+      axios.post("/api/discs/add", newDisc);
+      this.props.success();
+      this.setState({ snackbar: false });
     } else {
       this.setState({ snackbar: true });
     }
