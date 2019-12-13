@@ -82,11 +82,10 @@ class ListComponent extends Component {
                 marginRight: 10
               }}
             >
-              <MenuItem value={25}>25</MenuItem>
               <MenuItem value={50}>50</MenuItem>
-              <MenuItem value={75}>75</MenuItem>
               <MenuItem value={100}>100</MenuItem>
-              <MenuItem value={125}>125</MenuItem>
+              <MenuItem value={250}>250</MenuItem>
+              <MenuItem value={totalCount}>{totalCount}</MenuItem>
             </Select>
             <Typography
               style={{ paddingTop: 6, fontSize: "1rem", color: "lightgrey" }}

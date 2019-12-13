@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import axios from "axios";
 import setAuthToken from "../../utils/setAuthToken";
+import jwt_decode from "jwt-decode";
 
 import { Fab } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
@@ -10,6 +11,21 @@ import { Add } from "@material-ui/icons";
 import AddDiscDialog from "./AddDisc/AddDiscDialog";
 import DiscAddedDialog from "./AddDisc/DiscAddedDialog";
 import LoginDialog from "./AddDisc/LoginDialog";
+
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  setAuthToken(localStorage.jwtToken);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(localStorage.jwtToken);
+
+  // Check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("Auth");
+    setAuthToken(false);
+  }
+}
 
 class AddDialog extends Component {
   state = {

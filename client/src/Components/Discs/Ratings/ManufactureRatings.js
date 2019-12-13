@@ -31,7 +31,7 @@ const styles = {
     borderBottom: "1px solid grey",
     borderLeft: "1px solid grey",
     borderRight: "1px solid grey",
-    width: 143
+    width: 140
   }
 };
 

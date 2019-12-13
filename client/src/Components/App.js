@@ -35,7 +35,7 @@ class App extends Component {
   state = {
     staticDiscs: [],
     discs: [],
-    showCount: 25,
+    showCount: 50,
     add_disc_open: false,
     drawer_open: true,
     toggleRatings: false,
