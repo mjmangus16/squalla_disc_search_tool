@@ -85,7 +85,7 @@ class ListComponent extends Component {
               <MenuItem value={50}>50</MenuItem>
               <MenuItem value={100}>100</MenuItem>
               <MenuItem value={250}>250</MenuItem>
-              <MenuItem value={totalCount}>{totalCount}</MenuItem>
+              <MenuItem value={1000}>All</MenuItem>
             </Select>
             <Typography
               style={{ paddingTop: 6, fontSize: "1rem", color: "lightgrey" }}
