@@ -83,11 +83,11 @@ const Disc = ({
 }) => {
   let ratingsContent;
 
-  if (status) {
-    ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
-  } else {
-    ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
-  }
+  // if (status) {
+  //   ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
+  // } else {
+  //   ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
+  // }
 
   return (
     <Card
@@ -98,26 +98,27 @@ const Disc = ({
     >
       <div className={classes.mediaContainer}>
         <CardMedia
-          title={data.manufacture}
-          image={getLogo(data.manufacture)}
+          title={data.brand}
+          image={getLogo(data.brand)}
           className={classes.media}
         />
       </div>
       <CardContent className={classes.content}>
         <CardHeader
-          title={data.discName}
-          subheader={data.discType}
+          title={data.title}
+          subheader={data.type}
           className={classes.header}
           classes={{ title: classes.title, subheader: classes.subHeader }}
         />
-        <Tooltip
+        {/* <Tooltip
           disableFocusListener
           placement="bottom-end"
           title={data.stability}
         >
           {ratingsContent}
-        </Tooltip>
-        <Button
+          WIP
+        </Tooltip> */}
+        {/* <Button
           size="small"
           href={data.link}
           target="_blank"
@@ -142,7 +143,7 @@ const Disc = ({
           >
             <RemoveIcon style={{ color: removeRed, fontSize: 15 }} />
           </IconButton>
-        )}
+        )} */}
       </CardContent>
     </Card>
   );

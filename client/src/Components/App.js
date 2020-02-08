@@ -52,7 +52,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get("/api/discs/all").then(discs => {
+    // axios.get("/api/discs/all").then(discs => {
+    //   this.setState({
+    //     discs: shuffledArray(discs.data),
+    //     staticDiscs: shuffledArray(discs.data)
+    //   });
+    // });
+
+    axios.get("/api/discs/discs2GetAll").then(discs => {
       this.setState({
         discs: shuffledArray(discs.data),
         staticDiscs: shuffledArray(discs.data)
@@ -110,11 +117,11 @@ class App extends Component {
 
     if (manufactures.length > 0) {
       container = container.filter(disc =>
-        manufactures.includes(disc.manufacture.toLowerCase())
+        manufactures.includes(disc.brand.toLowerCase())
       );
     }
     if (discType.length > 0) {
-      container = container.filter(disc => discType.includes(disc.discType));
+      container = container.filter(disc => discType.includes(disc.type));
     }
     if (stability.length > 0) {
       container = container.filter(disc => stability.includes(disc.stability));
@@ -199,7 +206,7 @@ class App extends Component {
     this.setState(prevState => {
       return {
         discs: prevState.staticDiscs.filter(disc =>
-          disc.discName.toLowerCase().includes(value.toLowerCase())
+          disc.title.toLowerCase().includes(value.toLowerCase())
         )
       };
     });

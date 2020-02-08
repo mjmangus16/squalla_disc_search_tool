@@ -39,18 +39,22 @@ import yikun from "./images/yikun.png";
 import fourthCircle from "./images/4circle.png";
 import discmaniaActive from "./images/discmaniaActive.png";
 import discmaniaEvolution from "./images/discmaniaEvolution.png";
+import guru from "./images/guru.png";
+import mint from "./images/mint.png";
+import skyquest from "./images/skyquest.png";
+import kaufinator from "./images/kaufinator.png";
+import abc from "./images/abc.png";
+import arsenal from "./images/arsenal.png";
+import plasticAddicts from "./images/plasticAddicts.png";
+import thoughtSpace from "./images/thoughtSpace.png";
 
 const getLogo = manufacturer => {
   switch (manufacturer) {
-    case "DiscMania":
-      return discMania;
     case "Discmania":
       return discMania;
     case "Discraft":
       return discraft;
     case "Dynamic Discs":
-      return dynamic;
-    case "Dynamic":
       return dynamic;
     case "Innova":
       return innova;
@@ -96,26 +100,18 @@ const getLogo = manufacturer => {
       return legacy;
     case "Legacy":
       return legacy;
-    case "Lightning Golf Discs":
+    case "Lightning Discs":
       return lightning;
-    case "Lightning":
-      return lightning;
-    case "Nite Ize Innovation":
-      return niteIze;
     case "Nite Ize":
       return niteIze;
     case "Prodiscus":
       return prodiscus;
     case "Reptilian Disc Golf":
       return reptilian;
-    case "Reptilian":
-      return reptilian;
     case "RPM Discs":
       return rpm;
     case "RPM":
       return rpm;
-    case "Salient Discs":
-      return salient;
     case "Salient":
       return salient;
     case "TOBU":
@@ -126,7 +122,7 @@ const getLogo = manufacturer => {
       return viking;
     case "Viking":
       return viking;
-    case "YiKun":
+    case "Yikun":
       return yikun;
     case "AquaFlight":
       return aquaFlight;
@@ -137,8 +133,6 @@ const getLogo = manufacturer => {
     case "Above Ground Level":
       return agl;
     case "Ozone Discs":
-      return ozone;
-    case "Ozone":
       return ozone;
     case "Streamline Discs":
       return streamline;
@@ -152,12 +146,28 @@ const getLogo = manufacturer => {
       return galaxy;
     case "Galaxy":
       return galaxy;
-    case "Fourth Circle":
+    case "Fourth Circle Discs":
       return fourthCircle;
     case "Discmania Active":
       return discmaniaActive;
     case "Discmania Evolution":
       return discmaniaEvolution;
+    case "Guru Disc Golf":
+      return guru;
+    case "Mint Discs":
+      return mint;
+    case "Skyquest":
+      return skyquest;
+    case "Kaufinator Discs":
+      return kaufinator;
+    case "ABC":
+      return abc;
+    case "Arsenal Discs":
+      return arsenal;
+    case "Plastic Addicts":
+      return plasticAddicts;
+    case "Thought Space Athletics":
+      return thoughtSpace;
     default:
       return null;
   }

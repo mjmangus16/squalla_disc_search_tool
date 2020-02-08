@@ -4,6 +4,9 @@ const passport = require("passport");
 // const discs = require("../../data/discs");
 
 const Disc = require("../../models/Disc");
+const Disc2 = require("../../models/Disc2");
+
+const array = require("../../discs_final");
 
 // @route   POST api/discs/add
 // @desc    Add a disc
@@ -119,5 +122,13 @@ router.get("/all", (req, res) => {
 //     addDisc.save().catch(err => console.log(err));
 //   }
 // });
+
+router.post("/disc2InsertMany", (req, res) => {
+  Disc2.insertMany(array);
+});
+
+router.get("/discs2GetAll", (req, res) => {
+  Disc2.find().then(discs => res.json(discs));
+});
 
 module.exports = router;

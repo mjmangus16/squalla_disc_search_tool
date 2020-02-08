@@ -120,7 +120,7 @@ class ListComponent extends Component {
           </ListItem>
           <ListItem>
             <SelectInputText
-              values={collectedValues.manufactures}
+              values={collectedValues.manufactures.sort()}
               handleChange={handlers.manufacture}
               selection={selections.manufacture}
               data="Manufacture"

@@ -23,6 +23,19 @@ class Discs extends Component {
 
     let content;
 
+    // if (discs.length > 0) {
+    //   content = discs.map((disc, i) => (
+    //     <Grid item key={`disc-${i}`}>
+    //       <Disc
+    //         data={disc}
+    //         status={toggleRatingsStatus}
+    //         addCompare={addCompare}
+    //         compareStatus={true}
+    //         compareDiscs={compareDiscs}
+    //       />
+    //     </Grid>
+    //   ));
+    // }
     if (discs.length > 0) {
       content = discs.map((disc, i) => (
         <Grid item key={`disc-${i}`}>
