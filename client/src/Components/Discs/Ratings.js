@@ -27,7 +27,16 @@ const styles = {
   }
 };
 
-const InfiniteRatings = ({ classes, ratings }) => {
+const Ratings = ({ classes, ratings }) => {
+  const formatted = ratings.split("/");
+  const array = formatted.map(arr => {
+    let cont = arr;
+    if (arr.includes(".") && arr[arr.length - 1] === "0") {
+      cont = arr.substring(0, arr.length - 2);
+    }
+    return cont;
+  });
+
   return (
     <div className={classes.ratingsContainer}>
       <Typography
@@ -36,7 +45,7 @@ const InfiniteRatings = ({ classes, ratings }) => {
         className={classes.rating}
         classes={{ h6: classes.h6 }}
       >
-        {ratings.speed}
+        {array[0]}
       </Typography>
       <Typography
         variant="h6"
@@ -44,7 +53,7 @@ const InfiniteRatings = ({ classes, ratings }) => {
         className={classes.rating}
         classes={{ h6: classes.h6 }}
       >
-        {ratings.glide}
+        {array[1]}
       </Typography>
       <Typography
         variant="h6"
@@ -52,7 +61,7 @@ const InfiniteRatings = ({ classes, ratings }) => {
         className={classes.rating}
         classes={{ h6: classes.h6 }}
       >
-        {ratings.turn}
+        {array[2]}
       </Typography>
       <Typography
         variant="h6"
@@ -60,10 +69,10 @@ const InfiniteRatings = ({ classes, ratings }) => {
         className={classes.rating4}
         classes={{ h6: classes.h6 }}
       >
-        {ratings.fade}
+        {array[3]}
       </Typography>
     </div>
   );
 };
 
-export default withStyles(styles)(InfiniteRatings);
+export default withStyles(styles)(Ratings);

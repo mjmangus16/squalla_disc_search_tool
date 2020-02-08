@@ -52,6 +52,9 @@ const Disc2Schema = new Schema({
   },
   max_weight: {
     type: String
+  },
+  price_range: {
+    type: String
   }
 });
 

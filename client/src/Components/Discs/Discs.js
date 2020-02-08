@@ -18,7 +18,8 @@ class Discs extends Component {
       toggleRatingsStatus,
       discs,
       addCompare,
-      compareDiscs
+      compareDiscs,
+      learnMoreOpen
     } = this.props;
 
     let content;
@@ -45,6 +46,7 @@ class Discs extends Component {
             addCompare={addCompare}
             compareStatus={true}
             compareDiscs={compareDiscs}
+            learnMoreOpen={learnMoreOpen}
           />
         </Grid>
       ));

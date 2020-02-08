@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Card,
   CardContent,
@@ -13,9 +13,8 @@ import { orange, red } from "@material-ui/core/colors";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-import InfiniteRatings from "./Ratings/InfiniteRatings";
-import ManufactureRatings from "./Ratings/ManufactureRatings";
-
+import Ratings from "./Ratings";
+import LearnMore from "./LearnMore";
 import getLogo from "./getLogo/getLogo";
 
 const removeRed = red[300];
@@ -79,15 +78,25 @@ const Disc = ({
   addCompare,
   removeCompare,
   compareStatus,
-  compareDiscs
+  compareDiscs,
+  learnMoreOpen
 }) => {
+  const [open, setOpen] = useState(false);
   let ratingsContent;
 
-  // if (status) {
-  //   ratingsContent = <ManufactureRatings ratings={data.manufactureRatings} />;
-  // } else {
-  //   ratingsContent = <InfiniteRatings ratings={data.infiniteRatings} />;
-  // }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = value => {
+    setOpen(false);
+  };
+
+  if (status) {
+    ratingsContent = <Ratings ratings={data.man_ratings} />;
+  } else {
+    ratingsContent = <Ratings ratings={data.infinite_ratings} />;
+  }
 
   return (
     <Card
@@ -110,19 +119,19 @@ const Disc = ({
           className={classes.header}
           classes={{ title: classes.title, subheader: classes.subHeader }}
         />
-        {/* <Tooltip
+        <Tooltip
           disableFocusListener
           placement="bottom-end"
           title={data.stability}
         >
           {ratingsContent}
-          WIP
-        </Tooltip> */}
-        {/* <Button
+        </Tooltip>
+        <Button
           size="small"
-          href={data.link}
-          target="_blank"
+          // href={data.link}
+          // target="_blank"
           style={{ marginLeft: 10, color: orange[400] }}
+          onClick={() => learnMoreOpen(data)}
         >
           Learn More
         </Button>
@@ -143,7 +152,7 @@ const Disc = ({
           >
             <RemoveIcon style={{ color: removeRed, fontSize: 15 }} />
           </IconButton>
-        )} */}
+        )}
       </CardContent>
     </Card>
   );

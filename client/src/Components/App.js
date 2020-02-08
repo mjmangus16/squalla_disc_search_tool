@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "./Header";
 import Drawer from "./header-actions/Drawer/Drawer";
 import Discs from "./Discs/Discs";
+import LearnMore from "./Discs/LearnMore";
 
 import filterRating from "../utils/filterRating";
 import shuffledArray from "../utils/shuffledArray";
@@ -48,17 +49,12 @@ class App extends Component {
     fadeSelections: [],
     values: [],
     compareDiscs: [],
-    tabValue: 0
+    tabValue: 0,
+    learnMoreOpen: false,
+    learnMoreData: {}
   };
 
   componentDidMount() {
-    // axios.get("/api/discs/all").then(discs => {
-    //   this.setState({
-    //     discs: shuffledArray(discs.data),
-    //     staticDiscs: shuffledArray(discs.data)
-    //   });
-    // });
-
     axios.get("/api/discs/discs2GetAll").then(discs => {
       this.setState({
         discs: shuffledArray(discs.data),
@@ -89,6 +85,20 @@ class App extends Component {
 
   drawer_toggle = () => {
     this.setState({ drawer_open: !this.state.drawer_open });
+  };
+
+  open_learn_more = discData => {
+    this.setState({
+      learnMoreOpen: true,
+      learnMoreData: discData
+    });
+  };
+
+  close_learn_more = () => {
+    this.setState({
+      learnMoreOpen: false,
+      learnMoreData: {}
+    });
   };
 
   filter_handlers = {
@@ -129,13 +139,11 @@ class App extends Component {
     if (speed.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(speed, disc.infiniteRatings.speed)
+          filterRating(speed, disc.man_ratings.split("/")[0])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
-          disc.manufactureRatings
-            ? filterRating(speed, disc.manufactureRatings.speed)
-            : false
+          filterRating(speed, disc.man_ratings.split("/")[0])
         );
       }
     }
@@ -143,13 +151,11 @@ class App extends Component {
     if (glide.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(glide, disc.infiniteRatings.glide)
+          filterRating(glide, disc.man_ratings.split("/")[1])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
-          disc.manufactureRatings
-            ? filterRating(glide, disc.manufactureRatings.glide)
-            : false
+          filterRating(glide, disc.man_ratings.split("/")[1])
         );
       }
     }
@@ -157,13 +163,11 @@ class App extends Component {
     if (turn.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(turn, disc.infiniteRatings.turn)
+          filterRating(turn, disc.man_ratings.split("/")[2])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
-          disc.manufactureRatings
-            ? filterRating(turn, disc.manufactureRatings.turn)
-            : false
+          filterRating(turn, disc.man_ratings.split("/")[2])
         );
       }
     }
@@ -171,13 +175,11 @@ class App extends Component {
     if (fade.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(fade, disc.infiniteRatings.fade)
+          filterRating(fade, disc.man_ratings.split("/")[3])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
-          disc.manufactureRatings
-            ? filterRating(fade, disc.manufactureRatings.fade)
-            : false
+          filterRating(fade, disc.man_ratings.split("/")[3])
         );
       }
     }
@@ -260,7 +262,9 @@ class App extends Component {
       glideSelections,
       turnSelections,
       fadeSelections,
-      tabValue
+      tabValue,
+      learnMoreData,
+      learnMoreOpen
     } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
@@ -268,6 +272,11 @@ class App extends Component {
     return (
       <Fragment>
         <CssBaseline />
+        <LearnMore
+          data={learnMoreData}
+          handleClose={this.close_learn_more}
+          open={learnMoreOpen}
+        />
         <Header drawerToggle={this.drawer_toggle} values={values} />
         <Drawer
           filterToggle={this.filter_toggle}
@@ -305,6 +314,7 @@ class App extends Component {
             discs={discs}
             compareDiscs={compareDiscs}
             addCompare={this.addCompare}
+            learnMoreOpen={this.open_learn_more}
           />
         </div>
       </Fragment>
