@@ -81,16 +81,7 @@ const Disc = ({
   compareDiscs,
   learnMoreOpen
 }) => {
-  const [open, setOpen] = useState(false);
   let ratingsContent;
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = value => {
-    setOpen(false);
-  };
 
   if (status) {
     ratingsContent = <Ratings ratings={data.man_ratings} />;
@@ -114,7 +105,9 @@ const Disc = ({
       </div>
       <CardContent className={classes.content}>
         <CardHeader
-          title={data.title}
+          title={`${data.title.slice(0, 15)}${
+            data.title.length > 15 ? ".." : ""
+          }`}
           subheader={data.type}
           className={classes.header}
           classes={{ title: classes.title, subheader: classes.subHeader }}
