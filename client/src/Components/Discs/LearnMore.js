@@ -25,7 +25,8 @@ const styles = theme => ({
       gridTemplateColumns: "100%",
       gridTemplateRows: "auto auto",
       width: "auto",
-      maxHeight: "100%"
+      maxHeight: "100%",
+      minHeight: "100%"
     }
   },
   flightPath: {
