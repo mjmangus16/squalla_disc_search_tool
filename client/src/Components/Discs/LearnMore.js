@@ -76,6 +76,10 @@ const styles = theme => ({
   },
   divider: {
     borderTop: "1px solid #606060"
+  },
+  dialogRoot: {
+    marginLeft: "auto",
+    marginRight: "auto"
   }
 });
 
@@ -92,6 +96,8 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
     }
   };
 
+  console.log(window.innerWidth);
+
   return (
     <Dialog
       fullWidth={isWidthDown("sm", width) ? false : true}
@@ -99,6 +105,7 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
       onClose={handleClose}
       aria-labelledby="simple-dialog-title"
       open={open}
+      classes={{ paper: classes.dialogRoot }}
     >
       <div className={classes.container}>
         <img src={data.flight_path} className={classes.flightPath} />
