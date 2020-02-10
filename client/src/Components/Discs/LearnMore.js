@@ -8,12 +8,13 @@ import {
   ListItem,
   CardHeader,
   Button,
-  Tabs,
-  Tab
+  IconButton
 } from "@material-ui/core";
 import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
+import CloseIcon from "@material-ui/icons/Close";
 import Ratings from "./Ratings";
 import getLogo from "./getLogo/getLogo";
+import { red } from "@material-ui/core/colors";
 
 const styles = theme => ({
   container: {
@@ -80,6 +81,15 @@ const styles = theme => ({
   dialogRoot: {
     marginLeft: "auto",
     marginRight: "auto"
+  },
+  close: {
+    position: "absolute",
+    zIndex: 5,
+    top: 0,
+    right: 15,
+    [theme.breakpoints.down("sm")]: {
+      right: 0
+    }
   }
 });
 
@@ -107,6 +117,9 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
       open={open}
       classes={{ paper: classes.dialogRoot }}
     >
+      <IconButton className={classes.close} size="small" onClick={handleClose}>
+        <CloseIcon />
+      </IconButton>
       <div className={classes.container}>
         <img src={data.flight_path} className={classes.flightPath} />
 
