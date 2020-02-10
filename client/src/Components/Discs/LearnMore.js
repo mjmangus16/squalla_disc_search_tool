@@ -26,7 +26,7 @@ const styles = theme => ({
       gridTemplateRows: "auto auto",
       width: "auto",
       maxHeight: "100%",
-      minHeight: "100%"
+      minHeight: "auto"
     }
   },
   flightPath: {
@@ -36,7 +36,8 @@ const styles = theme => ({
     [theme.breakpoints.down("sm")]: {
       width: 310,
       maxHeight: "100%",
-      gridRow: 2
+      gridRow: 2,
+      minHeight: "auto"
     }
   },
   info: {
@@ -46,7 +47,8 @@ const styles = theme => ({
     [theme.breakpoints.down("sm")]: {
       width: 310,
       maxHeight: "100%",
-      overflowY: "visible"
+      overflowY: "visible",
+      minHeight: "auto"
     }
   },
   mediaContainer: {
