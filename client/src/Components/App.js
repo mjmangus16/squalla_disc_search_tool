@@ -139,7 +139,7 @@ class App extends Component {
     if (speed.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(speed, disc.man_ratings.split("/")[0])
+          filterRating(speed, disc.infinite_ratings.split("/")[0])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
@@ -151,7 +151,7 @@ class App extends Component {
     if (glide.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(glide, disc.man_ratings.split("/")[1])
+          filterRating(glide, disc.infinite_ratings.split("/")[1])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
@@ -163,7 +163,7 @@ class App extends Component {
     if (turn.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(turn, disc.man_ratings.split("/")[2])
+          filterRating(turn, disc.infinite_ratings.split("/")[2])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>
@@ -175,7 +175,7 @@ class App extends Component {
     if (fade.length > 0) {
       if (this.state.toggleRatings === false) {
         container = container.filter(disc =>
-          filterRating(fade, disc.man_ratings.split("/")[3])
+          filterRating(fade, disc.infinite_ratings.split("/")[3])
         );
       } else if (this.state.toggleRatings === true) {
         container = container.filter(disc =>

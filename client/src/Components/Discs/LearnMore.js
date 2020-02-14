@@ -106,8 +106,6 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
     }
   };
 
-  console.log(window.innerWidth);
-
   return (
     <Dialog
       fullWidth={isWidthDown("sm", width) ? false : true}
