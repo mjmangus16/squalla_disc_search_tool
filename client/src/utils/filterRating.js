@@ -1,5 +1,4 @@
 const filterRating = (rating, num) => {
-  console.log(rating, num);
   if (num) {
     for (let i = 0; i < rating.length; i++) {
       let low = parseFloat(rating[i]) - 0.5;
