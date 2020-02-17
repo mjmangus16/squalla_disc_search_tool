@@ -14,7 +14,6 @@ import withWidth, { isWidthDown } from "@material-ui/core/withWidth";
 import CloseIcon from "@material-ui/icons/Close";
 import Ratings from "./Ratings";
 import getLogo from "./getLogo/getLogo";
-import { red } from "@material-ui/core/colors";
 
 const styles = theme => ({
   container: {
@@ -106,6 +105,10 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
     }
   };
 
+  let plastics = ["BT Hard Burst ", "BT Medium Burst ", "BT Soft ", "BT Soft Burst "]
+
+  console.log(data)
+
   return (
     <Dialog
       fullWidth={isWidthDown("sm", width) ? false : true}
@@ -193,6 +196,20 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
                 </div>
               </ListItem>
             )}
+            <div className={classes.divider} style={{ marginTop: 11 }} />
+            <Typography
+              variant="body1"
+              color="textSecondary"
+              component="p"
+              style={{ paddingTop: 16, paddingBottom: 16, textAlign: "center" }}
+            >
+              Plastics Available
+            </Typography>
+            
+              {plastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
+                {pl}
+              </Typography>)}
+            
             <div className={classes.divider} style={{ marginTop: 11 }} />
             <div style={{ paddingTop: 15 }}>
               <Typography variant="body1" color="textSecondary" component="p">
