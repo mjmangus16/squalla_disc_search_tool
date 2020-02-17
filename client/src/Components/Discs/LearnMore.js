@@ -106,6 +106,11 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
     }
   };
 
+  let adjustedPlastics = data.plastics && data.plastics.filter(pl => !pl.includes("Misprint"))
+  adjustedPlastics = adjustedPlastics && adjustedPlastics.filter(pl => !pl.includes("X-Out"))
+
+  console.log(adjustedPlastics)
+
   return (
     <Dialog
       fullWidth={isWidthDown("sm", width) ? false : true}
@@ -204,9 +209,10 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
               Plastics Available
             </Typography>
             
-              {data.plastics && data.plastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
+              {adjustedPlastics && adjustedPlastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
                 {pl}
               </Typography>)}
+              
             
             <div className={classes.divider} style={{ marginTop: 11 }} />
             <div style={{ paddingTop: 15 }}>
