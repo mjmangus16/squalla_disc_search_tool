@@ -94,7 +94,6 @@ const styles = theme => ({
 
 const LearnMore = ({ data, handleClose, open, classes, width }) => {
   const [readMore, setReadMore] = useState(false);
-  console.log(data)
 
   const setDescription = () => {
     if (data.description) {
@@ -108,8 +107,6 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
 
   let adjustedPlastics = data.plastics && data.plastics.filter(pl => !pl.includes("Misprint"))
   adjustedPlastics = adjustedPlastics && adjustedPlastics.filter(pl => !pl.includes("X-Out"))
-
-  console.log(adjustedPlastics)
 
   return (
     <Dialog
@@ -209,9 +206,11 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
               Plastics Available
             </Typography>
             
-              {adjustedPlastics && adjustedPlastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
+              {adjustedPlastics && adjustedPlastics.map(pl => <Typography variant="body1" color="textSecondary" component="p" key={pl}>
                 {pl}
               </Typography>)}
+
+              
               
             
             <div className={classes.divider} style={{ marginTop: 11 }} />
