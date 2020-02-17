@@ -132,10 +132,15 @@ router.get("/discs2GetAll", (req, res) => {
 });
 
 router.put("/discs2UpdateMany", (req, res) => {
-  array.forEach(i => {
-    console.log(i)
-    Disc2.findOneAndUpdate({ title: i.title}, {plastics: i.plastics})
-  })
+
+  for (let i = 0; i < array.length; i++){
+    Disc2.update({ title: array[i].title}, {plastics: array[i].plastics}).then(() => {
+      console.log(i)
+    }).catch(err => console.log(err))
+  }
+  
+  
+ 
 })
 
 module.exports = router;
