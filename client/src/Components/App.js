@@ -68,6 +68,7 @@ class App extends Component {
       });
     });
   }
+  
 
   handleTabChange = (event, value) => {
     this.setState({ tabValue: value });
@@ -96,8 +97,7 @@ class App extends Component {
 
   close_learn_more = () => {
     this.setState({
-      learnMoreOpen: false,
-      learnMoreData: {}
+      learnMoreOpen: false
     });
   };
 

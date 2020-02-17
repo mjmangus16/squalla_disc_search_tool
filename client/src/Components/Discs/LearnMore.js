@@ -94,6 +94,7 @@ const styles = theme => ({
 
 const LearnMore = ({ data, handleClose, open, classes, width }) => {
   const [readMore, setReadMore] = useState(false);
+  console.log(data)
 
   const setDescription = () => {
     if (data.description) {
@@ -104,10 +105,6 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
       }
     }
   };
-
-  let plastics = ["BT Hard Burst ", "BT Medium Burst ", "BT Soft ", "BT Soft Burst "]
-
-  console.log(data)
 
   return (
     <Dialog
@@ -196,7 +193,8 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
                 </div>
               </ListItem>
             )}
-            <div className={classes.divider} style={{ marginTop: 11 }} />
+            
+            <div className={classes.divider} style={{ marginTop: 10, paddingBottom: 1 }} />
             <Typography
               variant="body1"
               color="textSecondary"
@@ -206,7 +204,7 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
               Plastics Available
             </Typography>
             
-              {plastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
+              {data.plastics && data.plastics.map(pl => <Typography variant="body1" color="textSecondary" component="p">
                 {pl}
               </Typography>)}
             
