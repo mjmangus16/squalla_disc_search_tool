@@ -131,4 +131,11 @@ router.get("/discs2GetAll", (req, res) => {
   Disc2.find().then(discs => res.json(discs));
 });
 
+router.put("/discs2UpdateMany", (req, res) => {
+  array.forEach(i => {
+    console.log(i)
+    Disc2.findOneAndUpdate({ title: i.title}, {plastics: i.plastics})
+  })
+})
+
 module.exports = router;

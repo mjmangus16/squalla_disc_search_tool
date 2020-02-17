@@ -55,6 +55,9 @@ const Disc2Schema = new Schema({
   },
   price_range: {
     type: String
+  },
+  plastics: {
+    type: Array
   }
 });
 
