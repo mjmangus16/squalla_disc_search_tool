@@ -196,27 +196,30 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
                 </div>
               </ListItem>
             )}
-            <div className={classes.divider} style={{ marginTop: 10, paddingBottom: 1 }} />
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              style={{textAlign: "center", paddingTop: 16 }}
-            >
-              | <span style={{ padding: "0px 5px" }}>Distance</span> |{" "}
-              <span style={{ padding: "0px 5px" }}>HST</span> |{" "}
-              <span style={{ padding: "0px 5px" }}>LSF</span> |{" "}
-              <span style={{ padding: "0px 5px" }}>Net</span> |
-            </Typography>
+            
             {data.inbounds_ratings && (
-              <ListItem className={classes.ratingsLI}>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Inbounds:
+              <>
+                <div className={classes.divider} style={{ marginTop: 10, paddingBottom: 1 }} />
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  style={{textAlign: "center", paddingTop: 16 }}
+                >
+                  | <span style={{ padding: "0px 5px" }}>Distance</span> |{" "}
+                  <span style={{ padding: "0px 5px" }}>HST</span> |{" "}
+                  <span style={{ padding: "0px 5px" }}>LSF</span> |{" "}
+                  <span style={{ padding: "0px 5px" }}>Net</span> |
                 </Typography>
-                <div style={{ marginRight: 0 }}>
-                  <Ratings ratings={data.inbounds_ratings} inbound={true} />
-                </div>
-              </ListItem>
+                <ListItem className={classes.ratingsLI}>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Inbounds:
+                  </Typography>
+                  <div style={{ marginRight: 0 }}>
+                    <Ratings ratings={data.inbounds_ratings} inbound={true} />
+                  </div>
+                </ListItem>
+              </>
             )}
             
             <div className={classes.divider} style={{ marginTop: 10, paddingBottom: 1 }} />
