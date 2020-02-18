@@ -6,7 +6,7 @@ const passport = require("passport");
 const Disc = require("../../models/Disc");
 const Disc2 = require("../../models/Disc2");
 
-const array = require("../../discs_final");
+const array = require("../../inboundsData");
 
 // @route   POST api/discs/add
 // @desc    Add a disc
@@ -134,12 +134,10 @@ router.get("/discs2GetAll", (req, res) => {
 router.put("/discs2UpdateMany", (req, res) => {
 
   for (let i = 0; i < array.length; i++){
-    Disc2.update({ title: array[i].title}, {plastics: array[i].plastics}).then(() => {
+    Disc2.update({ title: array[i].title}, {inbounds_ratings: array[i].inboundRating}).then(() => {
       console.log(i)
     }).catch(err => console.log(err))
   }
-  
-  
  
 })
 

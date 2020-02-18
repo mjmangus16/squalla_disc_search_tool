@@ -58,6 +58,9 @@ const Disc2Schema = new Schema({
   },
   plastics: {
     type: Array
+  },
+  inbounds_ratings: {
+    type: String
   }
 });
 
