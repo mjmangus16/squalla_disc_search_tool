@@ -268,7 +268,6 @@ class App extends Component {
     } = this.state;
     const totalCount = this.state.discs.length;
     const discs = [...this.state.discs].splice(0, showCount);
-    console.log(discs)
 
     return (
       <Fragment>
