@@ -27,7 +27,7 @@ const styles = {
   }
 };
 
-const Ratings = ({ classes, ratings }) => {
+const Ratings = ({ classes, ratings, inbound }) => {
   const formatted = ratings.split("/");
   const array = formatted.map(arr => {
     let cont = arr;
@@ -45,7 +45,7 @@ const Ratings = ({ classes, ratings }) => {
         className={classes.rating}
         classes={{ h6: classes.h6 }}
       >
-        {array[0]}
+        {inbound ? array[0]+"'" : array[0]}
       </Typography>
       <Typography
         variant="h6"

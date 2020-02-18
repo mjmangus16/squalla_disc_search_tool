@@ -163,11 +163,12 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
               {readMore ? "Read Less" : "Read More"}
             </Button>
             <div className={classes.divider} />
+            
             <Typography
               variant="body2"
               color="textSecondary"
               component="p"
-              style={{ paddingTop: 16, textAlign: "center" }}
+              style={{ textAlign: "center", paddingTop: 16 }}
             >
               | <span style={{ padding: "0px 5px" }}>Speed</span> |{" "}
               <span style={{ padding: "0px 5px" }}>Glide</span> |{" "}
@@ -178,7 +179,7 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
             {data.man_ratings && (
               <ListItem className={classes.ratingsLI}>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Manufacture Ratings:
+                  Manufacture:
                 </Typography>
                 <div style={{ marginRight: 0 }}>
                   <Ratings ratings={data.man_ratings} />
@@ -188,10 +189,32 @@ const LearnMore = ({ data, handleClose, open, classes, width }) => {
             {data.infinite_ratings && (
               <ListItem className={classes.ratingsLI}>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Infinite Ratings:
+                  Infinite:
                 </Typography>
                 <div style={{ marginRight: 0 }}>
                   <Ratings ratings={data.infinite_ratings} />
+                </div>
+              </ListItem>
+            )}
+            <div className={classes.divider} style={{ marginTop: 10, paddingBottom: 1 }} />
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              style={{textAlign: "center", paddingTop: 16 }}
+            >
+              | <span style={{ padding: "0px 5px" }}>Distance</span> |{" "}
+              <span style={{ padding: "0px 5px" }}>HST</span> |{" "}
+              <span style={{ padding: "0px 5px" }}>LSF</span> |{" "}
+              <span style={{ padding: "0px 5px" }}>Net</span> |
+            </Typography>
+            {data.inbounds_ratings && (
+              <ListItem className={classes.ratingsLI}>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  Inbounds:
+                </Typography>
+                <div style={{ marginRight: 0 }}>
+                  <Ratings ratings={data.inbounds_ratings} inbound={true} />
                 </div>
               </ListItem>
             )}
